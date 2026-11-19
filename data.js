@@ -1,7 +1,7 @@
 window.dashboardData = {
   "title": "USC Iovine and Young Academy — Spring 2027 Enrollment and Capacity Tracker",
   "termCode": 20271,
-  "currentSnapshot": "11/19/2026, 11:17:00 AM PST",
+  "currentSnapshot": "11/19/2026, 11:31:34 AM PST",
   "baselineSnapshot": "11/19/2026, 11:17:00 AM PST",
   "lowThreshold": 50,
   "nearThreshold": 80,
@@ -698,7 +698,7 @@ window.dashboardData = {
       "course": "IDSN 599 Special Topics",
       "section": "34152",
       "instructor": "Thomas Dadourian",
-      "enrolled": 19,
+      "enrolled": 20,
       "capacity": 28,
       "waitlisted": 0,
       "metrics": true,
@@ -1476,7 +1476,15 @@ window.dashboardData = {
       ]
     }
   ],
-  "trendLog": [],
+  "trendLog": [
+    {
+      "date": "11/19/2026 AM",
+      "course": "IDSN 599 Special Topics",
+      "section": "34152",
+      "previous": 19,
+      "current": 20
+    }
+  ],
   "facultyNotes": [],
   "recommendations": [],
   "history": [
@@ -1561,9 +1569,33 @@ window.dashboardData = {
         "10289"
       ],
       "sectionsRemoved": []
+    },
+    {
+      "date": "November 19, 2026",
+      "snapshot": "11/19/2026, 11:31:34 AM PST",
+      "added": 1,
+      "dropped": 0,
+      "totals": {
+        "Undergraduate ACAD": 765,
+        "Graduate IDSN": 601,
+        "Product Innovation (PRIN)": 10
+      },
+      "fullSections": 10,
+      "notes": "USC spring refresh. Section additions/removals are recorded separately from seat changes.",
+      "sectionsAdded": [],
+      "sectionsRemoved": []
     }
   ],
-  "netChangeLabel": "Initial spring baseline"
+  "netChangeLabel": "Latest refresh vs. previous snapshot",
+  "latestChanges": [
+    {
+      "date": "11/19/2026 AM",
+      "course": "IDSN 599 Special Topics",
+      "section": "34152",
+      "previous": 19,
+      "current": 20
+    }
+  ]
 };
 window.sectionCredits = {
   "10200": 2,
