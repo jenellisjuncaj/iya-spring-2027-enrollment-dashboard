@@ -1360,26 +1360,26 @@
     <div class="wrap hero">
       <div>
         <h1>USC Iovine and Young Academy's Enrollment and Capacity Tracker</h1>
-        <p class="subtitle">Fall 2026 enrollment management brief</p>
-        <div class="term-timing" aria-label="Fall 2026 class start timing">
+        <p class="subtitle">Spring 2027 enrollment management brief</p><p id="snapshotStatus"></p>
+        <div class="term-timing" aria-label="Spring 2027 class start timing">
           <strong>Classes Begin</strong>
-          <span>8/24/26</span>
+          <span>1/11/27</span>
           <span><b id="daysUntilClasses">--</b> days remaining</span>
           <span id="classWeekLine"></span>
-                  <div class="term-dates" aria-label="Fall 2026 term dates">
+                  <div class="term-dates" aria-label="Spring 2027 term dates">
           <div class="term-date-line">
             <strong>Classes End</strong>
-            <span>Friday, December 4</span>
+            <span>Friday, April 30</span>
             <span><b id="daysUntilClassesEnd">--</b> days remaining</span>
           </div>
           <div class="term-date-line">
             <strong>Study Days</strong>
-            <span>Sat–Tue, December 5–8</span>
+            <span>Sat–Tue, May 1–4</span>
             <span><b id="daysUntilStudyDays">--</b> days remaining</span>
           </div>
           <div class="term-date-line">
             <strong>Exams</strong>
-            <span>Wed–Wed, December 9–16</span>
+            <span>Wed–Wed, May 5–12</span>
             <span><b id="daysUntilExams">--</b> days remaining</span>
           </div>
         </div>
@@ -1480,7 +1480,7 @@
         <div class="section-head">
           <div>
             <h2 id="facilitiesTitle">Facilities &amp; Space Utilization KPIs</h2>
-            <p>All-week utilization and schedule compliance calculated from the same weekday, room, and hourly bookings shown in the heat map.</p>
+            <p>Spring room assignments and capacities are awaiting verification.</p>
           </div>
           <span class="collapse-control" aria-hidden="true"></span>
         </div>
@@ -1554,7 +1554,7 @@
         <div class="section-head">
           <div>
             <h2 id="programTitle">Program Summary</h2>
-            <p>Enrollment and capacity totals by program. This will expand automatically when undergraduate and other program data is added.</p>
+            <p>Spring 2027 enrollment and capacity totals by scheduled program.</p>
           </div>
           <span class="collapse-control" aria-hidden="true"></span>
         </div>
@@ -1841,7 +1841,7 @@
 
       const cards = [
         { name: "Overall Utilization", value: `${totalCapacity ? Math.round((totalEnrollment / totalCapacity) * 100) : 0}%`, detail: "enrolled seats vs. total capacity" },
-                { name: "Student Credit Hours", value: sections.reduce((sum, item) => sum + (item.enrolled * (window.sectionCredits[item.section] || 0)), 0), detail: "excludes variable-unit sections" },
+                { name: "Student Credit Hours", value: sections.reduce((sum, item) => sum + (item.enrolled * (window.sectionCredits[item.section] || 0)), 0), detail: "fixed-unit sections only; excludes variable or unknown units" },
         { name: "Sections", value: sections.length, detail: "tracked sections" },
         { name: "Enrollment", value: totalEnrollment, detail: `${totalCapacity} total seats` },
         { name: "Full", value: full, detail: "at capacity" },
@@ -1849,7 +1849,7 @@
         { name: "Healthy", value: healthy, detail: `${dashboardData.lowThreshold}-${dashboardData.nearThreshold - 1}% full` },
         { name: "Low", value: low, detail: `below ${dashboardData.lowThreshold}%` },
         { name: "Sections With Waitlists", value: sectionsWithWaitlists, detail: "active waitlists" },
-        { name: "Waitlisted Students", value: waitlistedStudents, detail: "unduplicated demand" },
+        { name: "Waitlisted Students", value: waitlistedStudents, detail: "section waitlist entries; students may appear more than once" },
         { name: "Net Change", value: netChange >= 0 ? `+${netChange}` : netChange, detail: dashboardData.netChangeLabel || "from latest update" }
       ];
 
@@ -1866,17 +1866,7 @@
       return dashboardData.trendLog.filter(item => trendPeriod(item.date) === periodName && item.current !== item.previous);
     }
 
-    function latestRunChanges() {
-      const ranked = dashboardData.trendLog
-        .map(item => ({ item, config: periodConfig(item.date) }))
-        .sort((a, b) => b.config.rank - a.config.rank);
-      if (!ranked.length) return [];
-      const latestKey = ranked[0].config.key;
-      return ranked
-        .filter(entry => entry.config.key === latestKey)
-        .map(entry => entry.item)
-        .filter(item => item.current !== item.previous);
-    }
+    function latestRunChanges() { return dashboardData.latestChanges || []; }
 
     function programMetrics() {
       return programNames().filter(program => program !== "All Programs").map(program => {
@@ -1892,15 +1882,7 @@
       });
     }
 
-    function revenueMetricSections() {
-      return dashboardData.sections.filter(item => {
-        if (item.program === "Graduate IDSN" && ["34782", "34785"].includes(item.section)) return false;
-        if (item.program === "Product Innovation" && ["34782", "34785"].includes(item.section)) {
-          return Number.isFinite(item.enrolled) && Number.isFinite(item.capacity);
-        }
-        return isMetricSection(item);
-      });
-    }
+    function revenueMetricSections() { return metricSections(dashboardData.sections); }
 
     function revenueProgramMetrics() {
       return programNames().filter(program => program !== "All Programs").map(program => {
@@ -1945,24 +1927,7 @@
         .join("; ");
     }
 
-    function todaysAddedSectionsSummary() {
-      const addedToday = [
-        {
-          program: "Graduate IDSN",
-          label: "IDSN 581 Introduction to the Global Fashion System section 34169"
-        },
-        {
-          program: "Graduate IDSN",
-          label: "IDSN 597 Industry Practicum in Fashion Innovation section 34192"
-        }
-      ].filter(item => activeProgram === "All Programs" || item.program === activeProgram);
-
-      if (!addedToday.length) return "";
-
-      const hybridNote = " IDSN 581 and IDSN 597 additions are hybrid sections and are also reflected in the Course Assistant list.";
-
-      return `New sections added on 7/30/26: ${addedToday.map(item => item.label).join("; ")}.${hybridNote}`;
-    }
+    function todaysAddedSectionsSummary() { return ""; }
 
     function renderLeadershipSummary() {
       const sections = metricSections(filteredSections());
@@ -1975,7 +1940,8 @@
       const full = sections.filter(item => statusFor(item).className === "full").length;
       const near = sections.filter(item => statusFor(item).className === "near").length;
       const low = sections.filter(item => statusFor(item).className === "low").length;
-      const latestChanges = latestRunChanges();
+      const visibleIds = new Set(sections.map(s => s.section));
+      const latestChanges = latestRunChanges().filter(s => visibleIds.has(s.section));
       const latestNet = latestChanges.reduce((sum, item) => sum + item.current - item.previous, 0);
       const latestGains = latestChanges
         .filter(item => item.current > item.previous)
@@ -1983,7 +1949,6 @@
       const latestDrops = latestChanges
         .filter(item => item.current < item.previous)
         .reduce((sum, item) => sum + item.previous - item.current, 0);
-      const cancelledIdsn500 = dashboardData.sections.find(item => item.section === "34160" && item.note);
 
       document.getElementById("leadershipSummary").innerHTML = [
         `${programLabel} currently have ${totalEnrollment} enrolled seats across ${sections.length} tracked sections, with ${utilization}% overall capacity utilization.`,
@@ -1991,7 +1956,6 @@
         `${low} sections are below 50% enrollment and may need advising visibility, promotion, or cancellation-risk review.`,
         `The latest trend log shows ${latestGains} added seats and ${latestDrops} dropped seats, for a net change of ${latestNet >= 0 ? "+" : ""}${latestNet}.`,
         todaysAddedSectionsSummary(),
-        cancelledIdsn500 ? `IDSN 500 section 34160 was cancelled on 7/29/26; it is shown for context as 0/25 but excluded from enrollment, capacity, and available-seat counts.` : ""
       ].filter(Boolean).map(item => `<li>${item}</li>`).join("");
 
     }
@@ -2016,7 +1980,7 @@
       const totalCapacity = revenueRows.reduce((sum, item) => sum + item.capacity, 0);
       const totalOpen = totalCapacity - totalEnrollment;
       document.getElementById("revenueCallout").innerHTML =
-        `<strong>SBO note:</strong> this view counts PRIN 550 under Product Innovation and excludes the duplicate IDSN 547 rows from revenue and capacity totals. Current unduplicated totals show ${totalEnrollment} enrolled seats and ${totalOpen} open seats across ${revenueRows.length} counted sections.`;
+        `<strong>Counting method:</strong> Each USC section is counted once under its scheduled ACAD, IDSN, or PRIN program. Cancelled sections and sections without published seat capacity are excluded from capacity metrics. Current totals: ${totalEnrollment} enrolled seats and ${totalOpen} open seats across ${revenueRows.length} sections.`;
     }
 
     function normalizeFacilityLocation(location) {
@@ -2345,53 +2309,9 @@
     }
 
     function renderFacilities() {
-      const metrics = facilityMetrics();
-      const overall = metrics.overall;
-      const cards = [
-        { name: "Tracked Rooms", value: metrics.physicalRooms.length, detail: "Combined bookings are folded into each physical room" },
-        { name: "Sections in Scope", value: overall.sections, detail: "Unique sections represented in the heat map" },
-        { name: "Weekly Room Meetings", value: overall.meetings, detail: "Weekday and physical-room bookings shown on the heat map" },
-        { name: "Avg Utilization", value: `${overall.utilization}%`, detail: "Weighted average of occupied heat-map cells" },
-        { name: "8am Room Compliance", value: `${overall.eightAmCompliance}%`, detail: `${overall.eightAm} of ${overall.complianceSlots} weekday room slots across IYH 210–213 are scheduled at 8 a.m.`, priority: true },
-        { name: "Late-End Compliance", value: `${overall.lateCompliance}%`, detail: `${overall.late} of ${overall.meetings} weekly room meetings end after 9 p.m.`, priority: true },
-        { name: "Rooms Below 50%", value: metrics.underFifty.length, detail: "Occupied physical rooms averaging below 50%" }
-      ];
-
-      document.getElementById("facilitiesKpis").innerHTML = cards.map(card => `
-        <article class="kpi-card${card.priority ? " priority-metric" : ""}">
-          <span class="name">${card.name}</span>
-          <strong class="value">${card.value}</strong>
-          <span class="detail">${card.detail}</span>
-        </article>
-      `).join("");
-
-      const occupiedRows = metrics.roomRows
-        .filter(item => item.utilizationSections.length)
-        .filter(item => item.room !== "IYH 107");
-      const emptiest = occupiedRows.reduce((lowest, item) => !lowest || item.utilization < lowest.utilization ? item : lowest, null);
-      const fullest = occupiedRows.reduce((highest, item) => !highest || item.utilization > highest.utilization ? item : highest, null);
-      const utilizationSummary = metrics.roomRows
-        .map(item => `${item.room}: ${item.utilization}%`)
-        .join("; ");
-      const lateSummary = metrics.late.length
-        ? metrics.late.map(item => `${shortCourse(item.course)} ${item.section} / ${item.day} / ${item.facilityRoom} / ${formatFacilityTime(item.startTime)}–${formatFacilityTime(item.endTime)}`).join("; ")
-        : "No weekly room meetings end after 9 p.m.";
-
-      document.getElementById("facilitiesSummary").innerHTML = [
-        `Per-room average utilization: ${utilizationSummary}.`,
-        `8 a.m. room compliance for IYH 210–213 is ${overall.eightAmCompliance}% (${overall.eightAm} of ${overall.complianceSlots} weekday room slots).`,
-        `Late-end compliance is ${overall.lateCompliance}% (${overall.late} of ${overall.meetings} weekly room meetings end after 9 p.m.).`,
-        `Room meetings ending after 9 p.m.: ${lateSummary}`,
-        `All classes previously scheduled in IYH 111 have been relocated to IYH 110 due to light renovation work in IYH 111.`,
-`Carsten Becker requested and was approved to relocate ACAD 217 Extended Reality Design from IYH 210/211 to IYH 110.`,
-`Professors Thomas Dadourian and Yihyun Lim requested ACAD 376 Industry Practicum be relocated from THH 202 to SOS B2 to accommodate the course's studio format, which requires flexible seating so students can move around.`,
-        emptiest && fullest ? `The emptiest occupied room is ${emptiest.room} at ${emptiest.utilization}%; the fullest is ${fullest.room} at ${fullest.utilization}%.` : "No occupied rooms are available to compare."
-      ].map(item => `<li>${item}</li>`).join("");
-
-      document.getElementById("facilitiesOverflowCount").textContent = metrics.overflow.length;
-      document.getElementById("facilitiesOverflowDetail").textContent = `${metrics.overflow.length} ACAD/IDSN sections meet outside IYH and are excluded from facilities utilization.${metrics.unassigned.length ? ` ${metrics.unassigned.length} additional sections have TBA locations.` : ""}`;
-      renderFacilitiesHeatmap();
-    }
+ const panel=document.querySelector('[aria-labelledby="facilitiesTitle"] .collapsible-content');
+ panel.innerHTML='<div class="callout"><strong>Spring room data is not yet verified.</strong> Room utilization, compliance, and the heat map will be available after spring room assignments and capacities are confirmed.</div>';
+}
 
     function renderCapacityCards() {
       const sections = metricSections(filteredSections());
@@ -2473,7 +2393,7 @@
             </div>
           </details>
         `;
-      }).join("") || `<div class="trend-period"><div class="trend-period-body">No trend entries match the selected program.</div></div>`;
+      }).join("") || `<div class="trend-period"><div class="trend-period-body">Spring baseline saved. Changes will appear after a later refresh.</div></div>`;
     }
 
     function periodConfig(date) {
@@ -2503,30 +2423,11 @@
     }
 
     function buildTrendSnapshots() {
-      const currentRows = revenueMetricSections().map(item => ({ ...item }));
-      const bySection = new Map(currentRows.map(item => [item.section, item]));
-      const periods = [...new Map(
-        dashboardData.trendLog
-          .map(item => periodConfig(item.date))
-          .sort((a, b) => a.rank - b.rank)
-          .map(config => [config.key, config])
-      ).values()];
-
-      const rows = currentRows.map(row => {
-        const values = { row };
-        periods.forEach(period => {
-          const laterChange = dashboardData.trendLog
-            .filter(trend => trend.section === row.section)
-            .filter(trend => bySection.has(trend.section))
-            .filter(trend => periodConfig(trend.date).rank > period.rank)
-            .reduce((sum, trend) => sum + (trend.current - trend.previous), 0);
-          values[period.key] = row.enrolled - laterChange;
-        });
-        return values;
-      });
-
-      return { periods, rows };
-    }
+ const history=dashboardData.history.filter(h=>h.totals);
+ const periods=history.map((h,i)=>({key:'snapshot'+i,label:h.snapshot}));
+ const rows=programNames().filter(p=>p!=='All Programs').map(program=>{const row={row:{program}};history.forEach((h,i)=>row['snapshot'+i]=h.totals[program]||0);return row;});
+ return {periods,rows};
+}
 
     function programColor(program) {
       const colors = {
@@ -2596,7 +2497,7 @@
       const height = 340;
       const pad = { top: 28, right: 34, bottom: 54, left: 64 };
       const maxValue = Math.max(10, ...totals.flatMap(item => item.values));
-      const x = index => pad.left + index * ((width - pad.left - pad.right) / (periods.length - 1));
+      const x = index => pad.left + index * ((width - pad.left - pad.right) / Math.max(1, periods.length - 1));
       const y = value => height - pad.bottom - (value / maxValue) * (height - pad.top - pad.bottom);
       const gridValues = [0, 0.25, 0.5, 0.75, 1].map(step => Math.round(maxValue * step));
 
@@ -2674,7 +2575,7 @@
         `;
       }).join("");
       document.getElementById("programSummaryNote").innerHTML =
-        "<strong>Cross-listing note:</strong> IDSN 547 / PRIN 550 is allocated to Product Innovation in this summary. The matching IDSN 547 rows remain visible elsewhere for program context, but are excluded here to avoid double-counting.";
+        "<strong>Cross-listing note:</strong> Each section is counted once under its scheduled program. Courses scheduled by other USC schools are outside this dashboard’s scope.";
     }
 
     function renderCourseAssistants() {
@@ -2711,7 +2612,7 @@
   const weekLine = document.getElementById("classWeekLine");
   if (!target) return;
   const today = new Date();
-  const start = new Date(2026, 7, 24);
+  const start = new Date(2027, 0, 11);
   today.setHours(0, 0, 0, 0);
   start.setHours(0, 0, 0, 0);
   const days = Math.max(0, Math.ceil((start - today) / 86400000));
@@ -2731,9 +2632,9 @@
   today.setHours(0, 0, 0, 0);
 
   const dates = [
-    { id: "daysUntilClassesEnd", date: new Date(2026, 11, 4) },
-    { id: "daysUntilStudyDays", date: new Date(2026, 11, 5) },
-    { id: "daysUntilExams", date: new Date(2026, 11, 9) }
+    { id: "daysUntilClassesEnd", date: new Date(2027, 3, 30) },
+    { id: "daysUntilStudyDays", date: new Date(2027, 4, 1) },
+    { id: "daysUntilExams", date: new Date(2027, 4, 5) }
   ];
 
   dates.forEach(item => {
@@ -2851,6 +2752,7 @@
 
     function init() {
       document.title = dashboardData.title;
+      document.getElementById("snapshotStatus").textContent = "Updated: " + dashboardData.currentSnapshot;
       renderKpis();
       renderLeadershipSummary();
       renderRevenueView();
@@ -2865,7 +2767,7 @@
       renderTermDates();
       renderProgramFilter();
       renderSectionFilters();
-      setupFacilitiesHeatmapControls();
+      
       enableSorting();
       setupBackToTop();
     }
