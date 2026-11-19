@@ -1,294 +1,64 @@
-const fs = require("node:fs");
-const path = require("node:path");
-const vm = require("node:vm");
-
-const TERM_CODE = 20263;
-const SCHOOL_CODE = "ACAD";
-const PROGRAM_CODES = ["ACAD", "IDSN", "PRIN"];
-const TIME_ZONE = "America/Los_Angeles";
-const DATA_FILE = process.env.DATA_FILE || path.join(__dirname, "..", "data.js");
-const API_URL = "https://classes.usc.edu/api/Courses/CoursesByTermSchoolProgram";
-
-function loadData(source) {
-  const context = { window: {} };
-  vm.createContext(context);
-  vm.runInContext(source, context, { filename: DATA_FILE });
-  return context.window;
-}
-
-function formatParts(date, options) {
-  return Object.fromEntries(
-    new Intl.DateTimeFormat("en-US", { timeZone: TIME_ZONE, ...options })
-      .formatToParts(date)
-      .filter(part => part.type !== "literal")
-      .map(part => [part.type, part.value])
-  );
-}
-
-function runLabels(date) {
-  const dateParts = formatParts(date, { year: "numeric", month: "long", day: "numeric" });
-  const shortDateParts = formatParts(date, { year: "numeric", month: "numeric", day: "numeric" });
-  const timeParts = formatParts(date, {
-    hour: "numeric",
-    minute: "2-digit",
-    hour12: true,
-    timeZoneName: "short"
-  });
-  const hour = Number(formatParts(date, { hour: "numeric", hourCycle: "h23" }).hour);
-  const dateLabel = `${dateParts.month} ${dateParts.day}, ${dateParts.year}`;
-  const timeLabel = `${timeParts.hour}:${timeParts.minute} ${timeParts.dayPeriod}`;
-  const dayPeriod = hour < 12 ? "AM" : "PM";
-
-  return {
-    dateLabel,
-    trendDate: `${shortDateParts.month}/${shortDateParts.day}/${shortDateParts.year} ${dayPeriod}`,
-    currentSnapshot: `${dateLabel} - ${timeLabel} PT (${timeParts.timeZoneName}) ACAD + IDSN + PRIN update`,
-    historySnapshot: `${hour < 12 ? "Morning" : "Afternoon"} update - ${timeLabel} PT (${timeParts.timeZoneName})`,
-    netChangeDate: `${shortDateParts.month.padStart(2, "0")}/${shortDateParts.day.padStart(2, "0")}/${shortDateParts.year.slice(-2)}`,
-    netChangePeriod: hour < 12 ? "morning" : "afternoon"
-  };
-}
-
-function previousRunLabel(history) {
-  const previous = history.at(-1);
-  if (!previous) return "previous update";
-
-  const previousDate = new Date(`${previous.date} 12:00:00 UTC`);
-  const dateParts = formatParts(previousDate, { month: "2-digit", day: "2-digit" });
-  const period = /^Morning\b/i.test(previous.snapshot)
-    ? "morning"
-    : /^(Afternoon|PM)\b/i.test(previous.snapshot)
-      ? "afternoon"
-      : "update";
-  return `${dateParts.month}/${dateParts.day} ${period}`;
-}
-
-async function fetchProgram(program) {
-  const url = new URL(API_URL);
-  url.searchParams.set("termCode", TERM_CODE);
-  url.searchParams.set("school", SCHOOL_CODE);
-  url.searchParams.set("program", program);
-
-  const response = await fetch(url, {
-    headers: { Accept: "application/json", "User-Agent": "iya-enrollment-dashboard-refresh" }
-  });
-  if (!response.ok) {
-    throw new Error(`USC SOC request for ${program} failed with ${response.status}`);
-  }
-
-  const data = await response.json();
-  if (!Array.isArray(data.courses)) {
-    throw new Error(`USC SOC response for ${program} did not contain courses`);
-  }
-  return data.courses.map(course => ({ ...course, requestedProgram: program }));
-}
-
-function trackedCourses(courseLists) {
-  const candidates = courseLists
-    .flat()
-    .filter(course => PROGRAM_CODES.includes(course.scheduledCourseCode?.prefix));
-  const sections = new Map();
-
-  for (const course of candidates) {
-    for (const section of course.sections || []) {
-      const sectionId = String(section.sisSectionId);
-      const current = sections.get(sectionId);
-      const isScheduledProgram = course.requestedProgram === course.scheduledCourseCode.prefix;
-      if (!current || isScheduledProgram) {
-        sections.set(sectionId, { course, section });
-      }
-    }
-  }
-
-  return sections;
-}
-
-function instructorNames(section) {
-  const names = (section.instructors || [])
-    .map(instructor => [instructor.firstName, instructor.lastName].filter(Boolean).join(" "))
-    .filter(Boolean);
-  return names.length ? names.join(", ") : "TBD";
-}
-
-function refreshedRow(existing, record) {
-  return {
-    ...existing,
-    instructor: instructorNames(record.section),
-    enrolled: Number(record.section.registeredSeats ?? 0),
-    capacity: Number(record.section.totalSeats ?? 0),
-    waitlisted: Number(record.section.waitlistedSeats ?? 0)
-  };
-}
-
-function inferredProgram(prefix) {
-  if (prefix === "ACAD") return "Undergraduate ACAD";
-  if (prefix === "IDSN") return "Graduate IDSN";
-  return "Product Innovation (PRIN)";
-}
-
-function newRow(record, template) {
-  const prefix = record.course.scheduledCourseCode.prefix;
-  const courseCode = record.course.scheduledCourseCode.courseSpace;
-  const row = {
-    program: template?.program || inferredProgram(prefix),
-    course: template?.course || `${courseCode} ${record.course.name}`,
-    section: String(record.section.sisSectionId),
-    instructor: instructorNames(record.section),
-    enrolled: Number(record.section.registeredSeats ?? 0),
-    capacity: Number(record.section.totalSeats ?? 0),
-    waitlisted: Number(record.section.waitlistedSeats ?? 0)
-  };
-  if (template && Object.hasOwn(template, "metrics")) row.metrics = template.metrics;
-  return row;
-}
-
-function buildSections(existingSections, records) {
-  const existingIds = new Set(existingSections.map(section => section.section));
-  const templates = new Map();
-
-  for (const section of existingSections) {
-    const record = records.get(section.section);
-    const courseCode = record?.course.scheduledCourseCode?.courseSpace;
-    if (courseCode && !templates.has(courseCode)) templates.set(courseCode, section);
-  }
-
-  const refreshed = existingSections
-    .filter(section => records.has(section.section))
-    .map(section => refreshedRow(section, records.get(section.section)));
-
-  const added = [...records.values()]
-    .filter(record => !existingIds.has(String(record.section.sisSectionId)))
-    .map(record => {
-      const courseCode = record.course.scheduledCourseCode.courseSpace;
-      return newRow(record, templates.get(courseCode));
-    })
-    .sort((left, right) =>
-      left.program.localeCompare(right.program) ||
-      left.course.localeCompare(right.course) ||
-      left.section.localeCompare(right.section)
-    );
-
-  return [...refreshed, ...added];
-}
-
-function enrollmentChanges(existingSections, freshSections, date) {
-  const previousBySection = new Map();
-  const freshBySection = new Map();
-  for (const section of existingSections) {
-    if (!previousBySection.has(section.section)) previousBySection.set(section.section, section);
-  }
-  for (const section of freshSections) {
-    if (!freshBySection.has(section.section)) freshBySection.set(section.section, section);
-  }
-
-  const changes = [];
-  for (const [sectionId, previous] of previousBySection) {
-    const current = freshBySection.get(sectionId);
-    if (current && current.enrolled !== previous.enrolled) {
-      changes.push({
-        date,
-        course: previous.course,
-        section: sectionId,
-        previous: previous.enrolled,
-        current: current.enrolled
-      });
-    }
-  }
-  return changes;
-}
-
-function replaceProperty(source, property, value) {
-  const marker = `"${property}":`;
-  const markerIndex = source.indexOf(marker);
-  if (markerIndex < 0) throw new Error(`Could not find dashboardData.${property}`);
-
-  let start = markerIndex + marker.length;
-  while (/\s/.test(source[start])) start++;
-  let end = start;
-
-  if (source[start] === '"') {
-    end++;
-    let escaped = false;
-    while (end < source.length) {
-      const char = source[end++];
-      if (escaped) escaped = false;
-      else if (char === "\\") escaped = true;
-      else if (char === '"') break;
-    }
-  } else {
-    const open = source[start];
-    const close = open === "[" ? "]" : "}";
-    let depth = 0;
-    let quote = null;
-    let escaped = false;
-    for (; end < source.length; end++) {
-      const char = source[end];
-      if (quote) {
-        if (escaped) escaped = false;
-        else if (char === "\\") escaped = true;
-        else if (char === quote) quote = null;
-        continue;
-      }
-      if (char === '"') {
-        quote = char;
-      } else if (char === open) {
-        depth++;
-      } else if (char === close && --depth === 0) {
-        end++;
-        break;
-      }
-    }
-  }
-
-  const serialized = JSON.stringify(value, null, 6).replace(/\n/g, "\n      ");
-  return source.slice(0, start) + serialized + source.slice(end);
-}
-
+const fs = require('node:fs');
+const path = require('node:path');
+const vm = require('node:vm');
+const TERM_CODE = 20271;
+const PROGRAMS = ['ACAD','IDSN','PRIN'];
+const DATA_FILE = process.env.DATA_FILE || path.join(__dirname,'..','data.js');
+const API = 'https://classes.usc.edu/api/Courses/CoursesByTermSchoolProgram';
+const labels = {ACAD:'Undergraduate ACAD',IDSN:'Graduate IDSN',PRIN:'Product Innovation (PRIN)'};
 async function main() {
-  const source = fs.readFileSync(DATA_FILE, "utf8");
-  const { dashboardData } = loadData(source);
-  const runAt = new Date();
-  const labels = runLabels(runAt);
-  const courseLists = await Promise.all(PROGRAM_CODES.map(fetchProgram));
-  const records = trackedCourses(courseLists);
-  const sections = buildSections(dashboardData.sections, records);
-  const changes = enrollmentChanges(dashboardData.sections, sections, labels.trendDate);
-  const added = changes.reduce((sum, change) => sum + Math.max(change.current - change.previous, 0), 0);
-  const dropped = changes.reduce((sum, change) => sum + Math.max(change.previous - change.current, 0), 0);
-  const fullSections = sections.filter(section =>
-    section.metrics !== false &&
-    Number.isFinite(section.enrolled) &&
-    Number.isFinite(section.capacity) &&
-    section.enrolled >= section.capacity
-  ).length;
-  const history = [
-    ...dashboardData.history,
-    {
-      date: labels.dateLabel,
-      snapshot: labels.historySnapshot,
-      added,
-      dropped,
-      fullSections,
-      notes: `Automated USC SOC refresh; ${changes.length} sections changed enrollment (+${added}/-${dropped} seats).`
-    }
-  ];
-  const updates = {
-    currentSnapshot: labels.currentSnapshot,
-    sections,
-    trendLog: [...changes, ...dashboardData.trendLog],
-    history,
-    netChangeLabel: `${labels.netChangeDate} ${labels.netChangePeriod} PT from ${previousRunLabel(dashboardData.history)}`
-  };
-
-  let output = source;
-  for (const [property, value] of Object.entries(updates)) {
-    output = replaceProperty(output, property, value);
+ const context={window:{}}; vm.runInNewContext(fs.readFileSync(DATA_FILE,'utf8'),context);
+ const old=context.window.dashboardData;
+ if(old.termCode!==TERM_CODE) throw Error('Refusing to mix semesters: install the spring data.js first.');
+ const lists=await Promise.all(PROGRAMS.map(async program=>{
+  const response=await fetch(API+'?termCode='+TERM_CODE+'&school=ACAD&program='+program,{signal:AbortSignal.timeout(60000)});
+  if(!response.ok)throw Error(program+' request failed: '+response.status);
+  const data=await response.json();
+  if(data.termCode!==TERM_CODE || !Array.isArray(data.courses) || !data.courses.length)throw Error('Invalid or empty '+program+' response');
+  return {program,courses:data.courses};
+ }));
+ const records=new Map();
+ for(const list of lists)for(const course of list.courses){
+  const prefix=course.scheduledCourseCode?.prefix;
+  if(!PROGRAMS.includes(prefix))continue;
+  for(const section of course.sections||[]){
+   if(section.termCode!==TERM_CODE)throw Error('Unexpected section term');
+   const id=String(section.sisSectionId);
+   if(!records.has(id)||list.program===prefix)records.set(id,{course,section,prefix});
   }
-  fs.writeFileSync(DATA_FILE, output);
-  console.log(`Refreshed ${sections.length} dashboard rows from ${records.size} USC SOC sections.`);
+ }
+ const credits={};
+ const sections=[...records.values()].map(({course,section,prefix})=>{
+  const id=String(section.sisSectionId);
+  const units=(section.units||[]).map(Number);
+  if(units.length===1 && Number.isFinite(units[0]))credits[id]=units[0];
+  const cancelled=section.isCancelled===true;
+  const capacity=Number(section.totalSeats);
+  const enrolled=Number(section.registeredSeats);
+  if(!Number.isFinite(capacity)||!Number.isFinite(enrolled)||capacity<0||enrolled<0)throw Error('Invalid seat counts: '+id);
+  return {program:labels[prefix],course:course.scheduledCourseCode.courseSpace+' '+course.name,section:id,
+   instructor:(section.instructors||[]).map(i=>[i.firstName,i.lastName].filter(Boolean).join(' ')).join(', ')||'TBD',
+   enrolled,capacity,waitlisted:Number(section.waitlistedSeats||0),
+   metrics:!cancelled && capacity>0,note:cancelled?'Cancelled':capacity===0?'No seat capacity published':'',
+   ...(section.name?{note:cancelled?'Cancelled':section.name}:{}),
+   meetings:section.schedule||[]};
+ }).sort((a,b)=>a.program.localeCompare(b.program)||a.course.localeCompare(b.course)||a.section.localeCompare(b.section));
+ if(!sections.length)throw Error('No sections returned; preserving previous data.');
+ const now=new Date();
+ const stamp=now.toLocaleString('en-US',{timeZone:'America/Los_Angeles',timeZoneName:'short'});
+ const date=now.toLocaleDateString('en-US',{timeZone:'America/Los_Angeles'});
+ const period=Number(new Intl.DateTimeFormat('en-US',{timeZone:'America/Los_Angeles',hour:'numeric',hourCycle:'h23'}).format(now))<12?'AM':'PM';
+ const before=new Map(old.sections.filter(s=>s.metrics!==false).map(s=>[s.section,s]));
+ const changes=sections.filter(s=>s.metrics!==false && before.has(s.section)&&before.get(s.section).enrolled!==s.enrolled).map(s=>({date:date+' '+period,course:s.course,section:s.section,previous:before.get(s.section).enrolled,current:s.enrolled}));
+ const totals=Object.fromEntries(Object.values(labels).map(p=>[p,sections.filter(s=>s.program===p&&s.metrics!==false).reduce((n,s)=>n+s.enrolled,0)]));
+ const added=changes.reduce((n,s)=>n+Math.max(0,s.current-s.previous),0);
+ const dropped=changes.reduce((n,s)=>n+Math.max(0,s.previous-s.current),0);
+ const previousIds=new Set(old.sections.map(s=>s.section));
+ const newIds=new Set(sections.map(s=>s.section));
+ const historyEntry={date:now.toLocaleDateString('en-US',{timeZone:'America/Los_Angeles',month:'long',day:'numeric',year:'numeric'}),snapshot:stamp,added,dropped,totals,fullSections:sections.filter(s=>s.metrics!==false&&s.enrolled>=s.capacity).length,notes:old.sections.length?'USC spring refresh. Section additions/removals are recorded separately from seat changes.':'Initial spring baseline.',sectionsAdded:sections.filter(s=>!previousIds.has(s.section)).map(s=>s.section),sectionsRemoved:old.sections.filter(s=>!newIds.has(s.section)).map(s=>s.section)};
+ const data={...old,currentSnapshot:stamp,baselineSnapshot:old.baselineSnapshot||stamp,sections,latestChanges:changes,trendLog:[...changes,...old.trendLog],history:[...old.history,historyEntry],netChangeLabel:old.sections.length?'Latest refresh vs. previous snapshot':'Initial spring baseline'};
+ const output='window.dashboardData = '+JSON.stringify(data,null,2)+';\nwindow.sectionCredits = '+JSON.stringify(credits,null,2)+';\nwindow.roomCapacity = {};\nwindow.facilityMeetingData = {};\nwindow.facilityScheduleData = {};\nwindow.excelFacilityMeetingData = [];\n';
+ fs.writeFileSync(DATA_FILE+'.tmp',output);fs.renameSync(DATA_FILE+'.tmp',DATA_FILE);
+ console.log('Refreshed '+sections.length+' unique spring sections.');
 }
-
-main().catch(error => {
-  console.error(error.message);
-  process.exitCode = 1;
-});
+main().catch(e=>{console.error(e);process.exitCode=1;});
