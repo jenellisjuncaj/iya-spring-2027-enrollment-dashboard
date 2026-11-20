@@ -1,8 +1,2 @@
 [build]
-  command = "node scripts/refresh-data.js"
   publish = "."
-
-[[headers]]
-  for = "/data.json"
-  [headers.values]
-    Cache-Control = "no-cache, max-age=0, must-revalidate"

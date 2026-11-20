@@ -1,1 +1,2778 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="description" content="Iovine and Young Academy academic year enrollment overview for Fall 2024 and Spring 2025."><title>Academic Year 2024–25 Enrollment Overview</title><link rel="stylesheet" href="styles.css"><script src="overview.js" defer></script><script src="app.js" defer></script></head><body><a class="skip-link" href="#main">Skip to content</a><header><div class="wrap hero"><p class="eyebrow">USC Iovine and Young Academy</p><h1>Academic Year 2024–25 Enrollment Overview</h1><p class="subtitle">Fall 2024 + Spring 2025 + Summer 2025 · Enrollment and capacity at a glance</p><nav class="quick-nav" aria-label="Dashboard sections"><a href="#kpis">KPIs</a><a href="#comparison">Semester Comparison</a><a href="#courses">Courses</a><a href="#methods">Counting Rules</a></nav></div></header><main id="main" class="wrap"><div id="notice" role="status" aria-live="polite"></div><noscript><p>This dashboard needs JavaScript to calculate and display totals.</p></noscript><div class="program-toolbar"><label for="programFilter">View program</label><select id="programFilter"><option value="">All Programs</option><option value="ACAD">Undergraduate ACAD</option><option value="IDSN">Graduate IDSN</option><option value="PRIN">Product Innovation (PRIN)</option></select><span id="programScope" aria-live="polite">All Programs</span></div><details class="collapsible-section" id="kpis" open><summary><div class="section-head"><div><h2>KPIs</h2><p>One course enrollment = one student enrolled in one course section. Students taking multiple courses or more than one semester are counted more than once.</p></div><span class="collapse-control" aria-hidden="true"></span></div></summary><div class="collapsible-content"><div id="kpiGrid" class="kpi-grid"></div><p class="muted">Capacity utilization = combined enrolled seats ÷ combined total seat capacity. Available Seats means remaining open seats.</p></div></details><details class="collapsible-section" id="comparison" open><summary><div class="section-head"><div><h2>Semester Comparison</h2><p>Annual figures add the three semesters; utilization uses their combined numerator and denominator.</p></div><span class="collapse-control" aria-hidden="true"></span></div></summary><div class="collapsible-content panel table-wrap"><table class="metric-table"><caption class="sr-only">Fall, spring, summer, and academic year enrollment metrics</caption><thead><tr><th scope="col">Metric</th><th scope="col" class="num">Fall 2024</th><th scope="col" class="num">Spring 2025</th><th scope="col" class="num">Summer 2025</th><th scope="col" class="num annual">Academic Year Total</th></tr></thead><tbody id="comparisonBody"></tbody></table></div></details><details class="collapsible-section" id="courses" open><summary><div class="section-head"><div><h2>Students Enrolled by Course</h2><p>One row per course, with students enrolled and sections offered for each semester. Total Students Enrolled combines fall, spring, and summer enrollments. Students taking multiple courses or attending more than one semester are counted more than once.</p></div><span class="collapse-control" aria-hidden="true"></span></div></summary><div class="collapsible-content"><div class="course-tools"><label for="search">Search courses<input id="search" type="search" placeholder="Prefix, number, or course title"></label><label for="prefix">Prefix<select id="prefix"><option value="">All prefixes</option><option>ACAD</option><option>IDSN</option><option>PRIN</option></select></label><span id="courseCount" aria-live="polite"></span><button id="reset" type="button">Reset Filters</button></div><p class="muted">“Not offered” means no counted section in that semester snapshot. “Unavailable” means the semester dataset is missing. A numeric 0 is a reported zero.</p><div class="panel table-wrap"><table class="metric-table" id="courseTable"><caption class="sr-only">Searchable course enrollments and sections for fall, spring, summer, and the academic year</caption><thead><tr><th colspan="3" scope="colgroup">Course</th><th colspan="2" scope="colgroup" class="semester-fall semester-start">Fall 2024</th><th colspan="2" scope="colgroup" class="semester-spring semester-start">Spring 2025</th><th colspan="2" scope="colgroup" class="semester-summer semester-start">Summer 2025</th><th colspan="2" scope="colgroup" class="annual">Academic Year Total</th></tr><tr><th scope="col"><button data-sort="prefix">Prefix</button></th><th scope="col"><button data-sort="number">Number</button></th><th scope="col"><button data-sort="title">Title</button></th><th scope="col" class="num semester-fall semester-start"><button data-sort="fall.enrollment">Students Enrolled</button></th><th scope="col" class="num semester-fall"><button data-sort="fall.sections">Sections</button></th><th scope="col" class="num semester-spring semester-start"><button data-sort="spring.enrollment">Students Enrolled</button></th><th scope="col" class="num semester-spring"><button data-sort="spring.sections">Sections</button></th><th scope="col" class="num semester-summer semester-start"><button data-sort="summer.enrollment">Students Enrolled</button></th><th scope="col" class="num semester-summer"><button data-sort="summer.sections">Sections</button></th><th scope="col" class="num annual"><button data-sort="totalEnrollment">Total Students Enrolled</button></th><th scope="col" class="num annual annual-sections"><button data-sort="totalSections">Total Sections</button></th></tr></thead><tbody id="courseBody"></tbody></table></div></div></details><details class="collapsible-section" id="methods" open><summary><div class="section-head"><div><h2>Counting Rules &amp; Data Notes</h2><p>Source differences, exclusions, and verification.</p></div><span class="collapse-control" aria-hidden="true"></span></div></summary><div class="collapsible-content panel methods"><p><strong>Historical USC Schedule of Classes snapshot.</strong> These are historical enrollment counts currently published by USC, retrieved on the dates below. They are not certified census-date or final institutional headcounts.</p><ul><li>Count each semester and section number once, under its scheduled ACAD, IDSN or PRIN prefix. Contextual cross-listings scheduled by other schools are excluded. Cancelled sections, missing counts, and nonpositive capacities are excluded.</li><li>Students Enrolled means one student enrolled in one course section. Students taking multiple courses or attending more than one semester are counted more than once.</li><li>Student Credit Hours / units = students enrolled × course units, for sections with exactly one published unit value. Variable-unit and unknown-unit sections are excluded from SCH, but remain in enrollment totals. Known zero-unit courses contribute zero SCH.</li><li>Available Seats means seats not filled: max(capacity − enrollment, 0) per section. Annual utilization is combined enrollment divided by combined capacity across all three semesters.</li><li>“Not offered” means no counted offering in that term snapshot. “Unavailable” means the term dataset could not be retrieved and no saved snapshot exists. Numeric zero means a reported zero. Annual totals require all three datasets.</li><li>Data is retrieved daily from USC’s public API and during Netlify builds. Retrieval dates do not establish when USC last changed a historical record. A retrieval older than 48 hours is marked outdated; failures retain a labeled saved snapshot.</li></ul><div id="unitNotes"></div><h3>Import Details</h3><table class="metric-table"><thead><tr><th>Semester</th><th>Counted sections / exclusions</th><th>USC term code</th></tr></thead><tbody id="reconciliation"></tbody></table></div></details><div id="sources" class="source-grid" aria-label="Semester data status"></div><footer class="page-footer"><p>USC Iovine and Young Academy · Academic Year 2024–25</p><p id="importTime"></p></footer></main></body></html>
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>USC Iovine and Young Academy Enrollment and Capacity Tracker</title>
+  <style>
+    :root {
+      --cardinal: #9d1b1e;
+      --cardinal-dark: #7b0000;
+      --gold: #b99a46;
+      --olive: #3f4a35;
+      --olive-dark: #273121;
+      --teal: #0e766f;
+      --clay: #bd5a46;
+      --taupe: #807a6b;
+      --ink: #111820;
+      --muted: #5d5d56;
+      --line: #ded7ca;
+      --paper: #f3f0e8;
+      --panel: #fffefa;
+      --table-head: #e7e1d5;
+      --full: #a11d21;
+      --near: #8a6030;
+      --healthy: #49664d;
+      --low: #647b86;
+      --watch: #7d7565;
+      --shadow: 0 14px 30px rgba(48, 42, 34, 0.08);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      background: var(--paper);
+      color: var(--ink);
+      font-family: "Aptos", "Segoe UI", Arial, Helvetica, sans-serif;
+      line-height: 1.45;
+    }
+
+    header {
+      background: var(--paper);
+      color: var(--ink);
+      border: 0;
+      box-shadow: none;
+    }
+
+    .wrap {
+      width: min(1320px, calc(100% - 96px));
+      margin: 0 auto;
+    }
+
+    .hero {
+      padding: 28px 0 24px;
+      display: block;
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+    }
+
+    h1,
+    h2,
+    h3 {
+      margin: 0;
+      letter-spacing: 0;
+    }
+
+    h1 {
+      color: var(--olive-dark);
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: clamp(2.1rem, 3.8vw, 3.85rem);
+      line-height: 1;
+      max-width: 1040px;
+      font-weight: 800;
+    }
+
+    .subtitle {
+      margin: 14px 0 0;
+      color: var(--muted);
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: clamp(1.15rem, 1.8vw, 1.55rem);
+      max-width: 760px;
+    }
+
+    .term-timing {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      margin-top: 16px;
+      padding: 8px 12px;
+      border: 1px solid var(--line);
+      border-left: 4px solid var(--gold);
+      border-radius: 8px;
+      background: rgba(255, 254, 250, 0.72);
+      color: var(--olive-dark);
+      font-size: 0.9rem;
+      box-shadow: 0 10px 26px rgba(46, 55, 39, 0.06);
+    }
+
+    .term-timing strong {
+      font-size: 0.74rem;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+    }
+
+    .term-timing span {
+      color: var(--muted);
+    }
+    .term-timing #classWeekLine {
+  padding-left: 12px;
+  border-left: 1px solid var(--line);
+  color: var(--olive-dark);
+  font-weight: 800;
+}
+
+.term-timing #classWeekLine:empty {
+  padding-left: 0;
+  border-left: 0;
+}
+
+    .term-timing b {
+      color: var(--cardinal-dark);
+    }
+    .term-dates {
+  margin-top: 12px;
+  display: grid;
+  gap: 8px;
+}
+
+.term-date-line {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  padding: 8px 12px;
+  border: 1px solid var(--line);
+  border-left: 4px solid var(--olive);
+  border-radius: 8px;
+  background: rgba(255, 254, 250, 0.72);
+  color: var(--olive-dark);
+  font-size: 0.9rem;
+  box-shadow: 0 10px 26px rgba(46, 55, 39, 0.06);
+}
+
+.term-date-line strong {
+  font-size: 0.74rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.term-date-line span {
+  color: var(--muted);
+}
+
+.term-date-line b {
+  color: var(--cardinal-dark);
+}
+
+    .quick-nav {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 9px;
+      padding: 22px 0 0;
+    }
+
+    .quick-nav a,
+    .sort-button {
+      border: 1px solid rgba(157, 27, 30, 0.14);
+      background: rgba(255, 254, 250, 0.76);
+      color: var(--cardinal-dark);
+      text-decoration: none;
+      font: inherit;
+      font-weight: 800;
+      padding: 8px 12px;
+      min-height: 36px;
+      cursor: pointer;
+      box-shadow: none;
+    }
+
+    .quick-nav a:hover,
+    .quick-nav a:focus-visible {
+      border-color: var(--gold);
+      background: #f8efd0;
+      color: var(--cardinal-dark);
+      outline: 3px solid rgba(185, 154, 70, 0.25);
+      outline-offset: 2px;
+    }
+
+    main {
+      padding: 28px 0 56px;
+    }
+
+    section {
+      margin-top: 28px;
+    }
+
+    .section-head {
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      gap: 16px;
+      margin-bottom: 14px;
+    }
+
+    .section-head p {
+      margin: 4px 0 0;
+      color: var(--muted);
+      max-width: 780px;
+    }
+
+    h2 {
+      color: var(--olive-dark);
+      font-size: clamp(1.35rem, 2vw, 1.9rem);
+      font-weight: 900;
+    }
+
+    .section-head h2::before {
+      content: "";
+      display: inline-block;
+      width: 32px;
+      height: 4px;
+      margin-right: 10px;
+      vertical-align: 0.25em;
+      background: var(--cardinal);
+    }
+
+    .collapsible-section {
+      margin-top: 34px;
+    }
+
+    .collapsible-section summary {
+      list-style: none;
+      cursor: pointer;
+      user-select: none;
+    }
+
+    .collapsible-section summary::-webkit-details-marker {
+      display: none;
+    }
+
+    .collapsible-section .section-head {
+      align-items: center;
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      background: rgba(255, 254, 250, 0.74);
+      box-shadow: var(--shadow);
+      padding: 18px 20px;
+      transition: border-color 160ms ease, background 160ms ease;
+    }
+
+    .collapsible-section summary:hover .section-head,
+    .collapsible-section summary:focus-visible .section-head {
+      border-color: rgba(157, 27, 30, 0.25);
+      background: #fffefa;
+    }
+
+    .collapse-control {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 116px;
+      border: 1px solid rgba(157, 27, 30, 0.18);
+      border-radius: 999px;
+      padding: 7px 12px;
+      color: var(--cardinal-dark);
+      background: #fbf7ee;
+      font-weight: 800;
+      font-size: 0.82rem;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+
+    .collapsible-section[open] .collapse-control::before {
+      content: "Hide";
+    }
+
+    .collapsible-section:not([open]) .collapse-control::before {
+      content: "Show";
+    }
+
+    .collapsible-content {
+      margin-top: 16px;
+    }
+
+    h3 {
+      color: var(--olive-dark);
+      font-weight: 900;
+    }
+
+    .kpi-grid {
+      display: grid;
+      grid-template-columns: repeat(7, minmax(120px, 1fr));
+      gap: 14px;
+    }
+
+    .kpi-card {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-top: 5px solid var(--olive-dark);
+      border-radius: 10px;
+      box-shadow: var(--shadow);
+      padding: 16px;
+      min-height: 116px;
+      display: grid;
+      align-content: space-between;
+    }
+
+    .kpi-card .name {
+      color: var(--muted);
+      font-weight: 700;
+      font-size: 0.82rem;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+    }
+
+    .kpi-card .value {
+      margin-top: 12px;
+      font-size: 1.85rem;
+      font-weight: 800;
+      color: var(--olive-dark);
+    }
+
+    .kpi-card .detail {
+      color: var(--muted);
+      font-size: 0.84rem;
+    }
+
+    .facilities-kpi-grid {
+      grid-template-columns: repeat(4, minmax(180px, 1fr));
+    }
+
+    .kpi-card.priority-metric {
+      border-top-color: var(--cardinal);
+      background: #fffaf2;
+    }
+
+    .kpi-card.priority-metric .value {
+      color: var(--cardinal-dark);
+      font-weight: 900;
+    }
+
+    .panel {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+
+    .panel-pad {
+      padding: 22px;
+    }
+
+    .grid-two {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(300px, 0.42fr);
+      gap: 18px;
+    }
+
+    .table-wrap {
+      overflow-x: auto;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      min-width: 720px;
+      background: var(--panel);
+    }
+
+    th,
+    td {
+      padding: 9px 10px;
+      border-bottom: 1px solid var(--line);
+      text-align: left;
+      vertical-align: middle;
+      white-space: nowrap;
+    }
+
+    th {
+      background: var(--table-head);
+      color: var(--olive-dark);
+      font-size: 0.82rem;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      user-select: none;
+    }
+
+    th:hover {
+      background: #ded6c8;
+    }
+
+    .sort-button {
+      width: 100%;
+      min-height: 34px;
+      padding: 0;
+      border: 0;
+      background: transparent;
+      color: inherit;
+      text-align: inherit;
+      text-transform: inherit;
+      letter-spacing: inherit;
+    }
+
+    .sort-button::after {
+      content: " sort";
+      color: #776b5c;
+      font-size: 0.68rem;
+      font-weight: 700;
+      text-transform: none;
+      letter-spacing: 0;
+    }
+
+    .sort-button:hover,
+    .sort-button:focus-visible {
+      color: var(--cardinal);
+      outline: 3px solid rgba(157, 27, 30, 0.18);
+      outline-offset: 3px;
+    }
+
+    td.num,
+    th.num {
+      text-align: right;
+    }
+
+    tr:hover td {
+      background: #f8f2e6;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 3px 9px;
+      border-radius: 999px;
+      border: 1px solid var(--line);
+      background: #f7f3ea;
+      color: var(--olive-dark);
+      font-size: 0.78rem;
+      font-weight: 800;
+    }
+
+    .badge.full {
+      border-color: #d9aaa5;
+      background: #fbefed;
+      color: #8d2424;
+    }
+
+    .badge.near {
+      border-color: #d9c39d;
+      background: #f8f0df;
+      color: #715229;
+    }
+
+    .badge.healthy {
+      border-color: #bdcdbf;
+      background: #eef4ee;
+      color: #3f5f42;
+    }
+
+    .badge.low {
+      border-color: #bfccd2;
+      background: #eef3f5;
+      color: #4f6873;
+    }
+
+    .badge.tbd {
+      border-color: #d7cec0;
+      background: #f5f1ea;
+      color: #716a5d;
+    }
+
+    .badge.crosslisted {
+      border-color: #d9c39d;
+      background: #f8f0df;
+      color: #715229;
+    }
+
+    .badge.cancelled {
+      border-color: #d7cec0;
+      background: #f5f1ea;
+      color: #716a5d;
+    }
+
+    .badge.watch {
+      border-color: #d0c7b7;
+      background: #f2eee5;
+      color: #635d50;
+    }
+
+    .program-pill {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 48px;
+      padding: 2px 8px;
+      border-radius: 999px;
+      border: 1px solid #d8cdbf;
+      background: #f7f2ea;
+      color: #4a2b20;
+      font-size: 0.76rem;
+      font-weight: 800;
+      letter-spacing: 0.02em;
+    }
+
+    .course-cell {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      min-width: 360px;
+    }
+
+    .course-cell .program-pill {
+      flex: 0 0 auto;
+    }
+
+    .course-name {
+      display: block;
+      white-space: normal;
+      line-height: 1.25;
+    }
+
+    .row-note {
+      display: block;
+      margin-top: 4px;
+      color: var(--muted);
+      font-size: 0.78rem;
+      line-height: 1.25;
+    }
+
+    .program-pill.acad {
+      border-color: #e2b9b6;
+      background: #fff1ef;
+      color: #7a1d18;
+    }
+
+    .program-pill.idsn {
+      border-color: #b9d5c5;
+      background: #eef8f2;
+      color: #1f5f3e;
+    }
+
+    .program-pill.prin {
+      border-color: #e5c896;
+      background: #fff7df;
+      color: #7a4a00;
+    }
+
+    .trend-up {
+      color: var(--healthy);
+      font-weight: 800;
+    }
+
+    .trend-down {
+      color: var(--full);
+      font-weight: 800;
+    }
+
+    .trend-flat {
+      color: var(--muted);
+      font-weight: 800;
+    }
+
+    .cards-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(220px, 1fr));
+      gap: 18px;
+    }
+
+    .status-card {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      box-shadow: var(--shadow);
+      padding: 18px;
+    }
+
+    .status-card h3 {
+      margin-bottom: 10px;
+      font-size: 1rem;
+    }
+
+    .facility-support-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.4fr) repeat(2, minmax(220px, 0.55fr));
+      gap: 18px;
+      margin-top: 18px;
+    }
+
+    .facility-summary {
+      height: 100%;
+    }
+
+    .facility-summary .summary-list {
+      margin: 0;
+    }
+
+    .facility-count {
+      display: block;
+      margin-top: 14px;
+      color: var(--cardinal-dark);
+      font-size: 2rem;
+      font-weight: 900;
+      line-height: 1;
+    }
+
+    .facility-card-detail {
+      margin: 8px 0 0;
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+
+    .facilities-heatmap-panel {
+      margin-top: 18px;
+    }
+
+    .heatmap-heading {
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      gap: 18px;
+      margin-bottom: 18px;
+    }
+
+    .heatmap-heading p {
+      margin: 5px 0 0;
+      color: var(--muted);
+    }
+
+    .heatmap-controls {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: end;
+      gap: 14px;
+    }
+
+    .heatmap-control-group {
+      display: grid;
+      gap: 5px;
+    }
+
+    .heatmap-control-label {
+      color: var(--muted);
+      font-size: 0.74rem;
+      font-weight: 900;
+      letter-spacing: 0.07em;
+      text-transform: uppercase;
+    }
+
+    .segmented-control {
+      display: inline-flex;
+      flex-wrap: wrap;
+      gap: 3px;
+      padding: 3px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: #f5efe3;
+    }
+
+    .segmented-control button {
+      min-height: 34px;
+      border: 0;
+      border-radius: 999px;
+      padding: 6px 12px;
+      background: transparent;
+      color: var(--olive-dark);
+      font: inherit;
+      font-size: 0.82rem;
+      font-weight: 800;
+      cursor: pointer;
+    }
+
+    .segmented-control button:hover,
+    .segmented-control button:focus-visible {
+      color: var(--cardinal-dark);
+      outline: 3px solid rgba(157, 27, 30, 0.16);
+      outline-offset: 1px;
+    }
+
+    .segmented-control button[aria-pressed="true"] {
+      background: var(--cardinal-dark);
+      color: #fffefa;
+      box-shadow: 0 3px 9px rgba(88, 24, 24, 0.18);
+    }
+
+    .heatmap-day-picker[hidden] {
+      display: none;
+    }
+
+    .heatmap-scroll {
+      overflow-x: auto;
+      padding-bottom: 4px;
+    }
+
+    .heatmap-day + .heatmap-day {
+      margin-top: 22px;
+      padding-top: 20px;
+      border-top: 1px solid var(--line);
+    }
+
+    .heatmap-day-title {
+      margin: 0 0 8px;
+      color: var(--cardinal-dark);
+      font-size: 0.9rem;
+      font-weight: 900;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+
+    .heatmap-grid {
+      display: grid;
+      grid-template-columns: 92px repeat(14, minmax(58px, 1fr));
+      min-width: 1010px;
+      border-top: 1px solid var(--line);
+      border-left: 1px solid var(--line);
+      background: var(--line);
+      gap: 1px;
+    }
+
+    .heatmap-time,
+    .heatmap-room,
+    .heatmap-cell,
+    .heatmap-corner {
+      min-height: 48px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 6px;
+      background: #fffefa;
+      text-align: center;
+      font-size: 0.78rem;
+    }
+
+    .heatmap-corner,
+    .heatmap-time {
+      min-height: 38px;
+      background: var(--table-head);
+      color: var(--olive-dark);
+      font-weight: 900;
+    }
+
+    .heatmap-room {
+      justify-content: flex-start;
+      background: #f4eee2;
+      color: var(--olive-dark);
+      font-weight: 900;
+    }
+
+    .heatmap-cell {
+      color: var(--olive-dark);
+      font-weight: 900;
+      transition: transform 140ms ease, box-shadow 140ms ease;
+    }
+
+    .heatmap-cell:not(.empty):hover {
+      position: relative;
+      z-index: 2;
+      transform: scale(1.05);
+      box-shadow: 0 5px 14px rgba(39, 49, 33, 0.2);
+    }
+
+    .heatmap-cell.empty {
+      background: #fffefa;
+      color: transparent;
+    }
+
+    .heatmap-cell.level-1 {
+      background: #f0e5cf;
+    }
+
+    .heatmap-cell.level-2 {
+      background: #d7c596;
+    }
+
+    .heatmap-cell.level-3 {
+      background: #9da275;
+      color: #21301f;
+    }
+
+    .heatmap-cell.level-4 {
+      background: #526548;
+      color: #fffefa;
+    }
+
+    .heatmap-cell.level-5 {
+      background: var(--cardinal-dark);
+      color: #fffefa;
+    }
+
+    .heatmap-legend {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 8px;
+      margin-top: 14px;
+      color: var(--muted);
+      font-size: 0.82rem;
+    }
+
+    .heatmap-legend-swatch {
+      width: 18px;
+      height: 18px;
+      border: 1px solid rgba(39, 49, 33, 0.12);
+      border-radius: 4px;
+    }
+
+    .course-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: grid;
+      gap: 8px;
+    }
+
+    .course-list li {
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+      border-top: 1px solid #eee8de;
+      padding-top: 8px;
+      font-size: 0.92rem;
+    }
+
+    .course-list li:first-child {
+      border-top: 0;
+      padding-top: 0;
+    }
+
+    .course-list strong {
+      white-space: nowrap;
+    }
+
+    .note-list {
+      margin: 0;
+      padding-left: 20px;
+    }
+
+    .note-list li {
+      margin: 8px 0;
+    }
+
+    .faculty-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(220px, 1fr));
+      gap: 12px;
+    }
+
+    .faculty-card {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      padding: 14px;
+    }
+
+    .faculty-card h3 {
+      font-size: 1rem;
+      color: var(--cardinal-dark);
+    }
+
+    .faculty-card p {
+      margin: 8px 0 0;
+      color: #4e4943;
+      font-size: 0.92rem;
+    }
+
+    .edit-note {
+      background: transparent;
+      padding: 0;
+      color: #403421;
+    }
+
+    .toolbar {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 10px;
+      margin-top: 0;
+    }
+
+    .toolbar label {
+      font-weight: 800;
+      color: var(--olive-dark);
+    }
+
+    .toolbar select {
+      min-height: 42px;
+      border: 1px solid var(--line);
+      background: var(--panel);
+      color: var(--ink);
+      padding: 8px 12px;
+      font: inherit;
+      min-width: 240px;
+    }
+
+    .table-filters {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      align-items: end;
+      margin: 12px 0;
+      padding: 18px;
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 10px;
+    }
+
+    .filter-field {
+      display: grid;
+      gap: 5px;
+      min-width: 190px;
+    }
+
+    .filter-field label {
+      font-size: 0.78rem;
+      font-weight: 800;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+    }
+
+    .filter-field input,
+    .filter-field select {
+      min-height: 40px;
+      border: 1px solid var(--line);
+      background: var(--panel);
+      color: var(--ink);
+      padding: 8px 10px;
+      font: inherit;
+    }
+
+    .filter-reset {
+      min-height: 40px;
+      border: 1px solid var(--cardinal);
+      background: var(--panel);
+      color: var(--cardinal);
+      font: inherit;
+      font-weight: 800;
+      padding: 8px 12px;
+      cursor: pointer;
+    }
+
+    .filter-reset:hover,
+    .filter-reset:focus-visible {
+      background: var(--cardinal-dark);
+      color: #fff;
+      outline: 3px solid rgba(153, 0, 0, 0.18);
+      outline-offset: 2px;
+    }
+
+    .back-to-top {
+      position: fixed;
+      right: 22px;
+      bottom: 22px;
+      z-index: 20;
+      width: 46px;
+      height: 46px;
+      border: 1px solid rgba(39, 49, 33, 0.22);
+      border-radius: 999px;
+      background: var(--olive-dark);
+      color: #fff;
+      font-size: 1.45rem;
+      font-weight: 900;
+      line-height: 1;
+      cursor: pointer;
+      box-shadow: 0 12px 28px rgba(39, 49, 33, 0.22);
+      opacity: 0;
+      transform: translateY(10px);
+      pointer-events: none;
+      transition: opacity 160ms ease, transform 160ms ease, background 160ms ease;
+    }
+
+    .back-to-top.visible {
+      opacity: 1;
+      transform: translateY(0);
+      pointer-events: auto;
+    }
+
+    .back-to-top:hover,
+    .back-to-top:focus-visible {
+      background: var(--cardinal-dark);
+      outline: 3px solid rgba(185, 154, 70, 0.32);
+      outline-offset: 3px;
+    }
+
+    .program-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(280px, 340px));
+      justify-content: center;
+      gap: 24px;
+      margin-top: 22px;
+    }
+
+    .program-card {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-left: 5px solid var(--olive);
+      border-radius: 10px;
+      padding: 22px 24px;
+      box-shadow: var(--shadow);
+    }
+
+    .program-card h3 {
+      font-size: 1.08rem;
+      color: var(--olive-dark);
+      margin-bottom: 18px;
+    }
+
+    .program-card dl {
+      margin: 0;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 10px 22px;
+      color: var(--olive-dark);
+    }
+
+    .program-card dt {
+      color: var(--muted);
+    }
+
+    .program-card dd {
+      margin: 0;
+      font-weight: 800;
+    }
+
+    .chart-panel {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      box-shadow: var(--shadow);
+      padding: 22px;
+    }
+
+    .chart-wrap {
+      overflow-x: auto;
+      margin-top: 12px;
+    }
+
+    .trend-chart {
+      display: block;
+      min-width: 760px;
+      width: 100%;
+      height: 340px;
+    }
+
+    .chart-axis {
+      stroke: #9b9287;
+      stroke-width: 1;
+    }
+
+    .chart-grid {
+      stroke: #eee6dc;
+      stroke-width: 1;
+    }
+
+    .chart-label {
+      fill: var(--muted);
+      font-size: 12px;
+      font-weight: 700;
+    }
+
+    .chart-value {
+      fill: var(--olive-dark);
+      font-size: 12px;
+      font-weight: 800;
+    }
+
+    .chart-legend {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px 18px;
+      margin-top: 10px;
+      color: var(--olive-dark);
+      font-size: 0.9rem;
+    }
+
+    .legend-item {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+    }
+
+    .legend-swatch {
+      width: 14px;
+      height: 14px;
+      display: inline-block;
+      border-radius: 3px;
+    }
+
+    .trend-list {
+      display: grid;
+      gap: 10px;
+      max-height: 720px;
+      overflow-y: auto;
+      padding: 18px;
+      background: var(--panel);
+      border-top: 1px solid var(--line);
+    }
+
+    .trend-period {
+      border: 1px solid var(--line);
+      background: var(--panel);
+      border-radius: 10px;
+      overflow: hidden;
+    }
+
+    .trend-period > summary {
+      display: grid;
+      grid-template-columns: minmax(220px, 1fr) auto auto;
+      gap: 12px;
+      align-items: center;
+      padding: 16px 18px;
+      cursor: pointer;
+      list-style: none;
+    }
+
+    .trend-period > summary::-webkit-details-marker {
+      display: none;
+    }
+
+    .trend-period > summary::after {
+      content: "+";
+      color: var(--cardinal);
+      font-weight: 900;
+      font-size: 1.2rem;
+      justify-self: end;
+    }
+
+    .trend-period[open] > summary::after {
+      content: "-";
+    }
+
+    .trend-period-title {
+      color: var(--cardinal-dark);
+      font-weight: 900;
+      font-size: 1.08rem;
+    }
+
+    .trend-period-meta {
+      color: var(--muted);
+      font-weight: 800;
+    }
+
+    .trend-period-net {
+      font-weight: 900;
+      min-width: 48px;
+      text-align: right;
+    }
+
+    .trend-period-body {
+      padding: 0 18px 18px;
+    }
+
+    .trend-change-list {
+      display: grid;
+      gap: 8px;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .trend-change-list li {
+      display: grid;
+      grid-template-columns: minmax(280px, 1fr) 90px 90px 90px 120px;
+      gap: 12px;
+      align-items: center;
+      border-top: 1px solid #eee6dd;
+      padding: 10px 0;
+      color: var(--olive-dark);
+    }
+
+    .trend-change-list li:first-child {
+      border-top: 0;
+    }
+
+    .trend-date {
+      color: var(--muted);
+      font-weight: 800;
+      font-size: 0.92rem;
+    }
+
+    .trend-course {
+      font-weight: 800;
+      color: var(--ink);
+    }
+
+
+    .leadership-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(280px, 0.38fr);
+      gap: 18px;
+    }
+
+    .summary-list {
+      margin: 0;
+      padding-left: 20px;
+      color: var(--olive-dark);
+    }
+
+    .summary-list li {
+      margin: 9px 0;
+    }
+
+    .decision-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(190px, 1fr));
+      gap: 18px;
+    }
+
+    .decision-card {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-top: 4px solid var(--olive);
+      border-radius: 10px;
+      padding: 18px;
+      min-height: 170px;
+    }
+
+    .decision-card h3 {
+      color: var(--olive-dark);
+      font-size: 0.96rem;
+      margin-bottom: 8px;
+    }
+
+    .decision-card ul {
+      margin: 0;
+      padding-left: 18px;
+      color: var(--olive-dark);
+      font-size: 0.9rem;
+    }
+
+    .decision-card li {
+      margin: 6px 0;
+    }
+
+    .metric-table {
+      min-width: 760px;
+    }
+
+    .sections-table th:nth-child(2),
+    .sections-table td:nth-child(2) {
+      width: 92px;
+    }
+
+    .callout {
+      border-left: 5px solid var(--olive);
+      background: #ebe7dc;
+      border-radius: 8px;
+      padding: 14px 16px;
+      color: var(--olive-dark);
+      margin-top: 12px;
+    }
+
+    footer {
+      color: var(--muted);
+      border-top: 1px solid var(--line);
+      padding: 24px 0;
+      font-size: 0.9rem;
+    }
+
+    @media (max-width: 980px) {
+      .hero,
+      .grid-two,
+      .leadership-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .kpi-grid,
+      .cards-grid,
+      .faculty-grid,
+      .decision-grid,
+      .trend-change-list li {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .facility-support-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .facility-summary {
+        grid-column: 1 / -1;
+      }
+
+      .heatmap-heading {
+        align-items: start;
+        flex-direction: column;
+      }
+
+      .program-grid {
+        grid-template-columns: repeat(2, minmax(260px, 1fr));
+      }
+
+    }
+
+    @media (max-width: 620px) {
+      .wrap {
+        width: min(100% - 32px, 1180px);
+      }
+
+      .hero {
+        padding: 26px 0 22px;
+      }
+
+      .quick-nav a {
+        flex: 1 1 150px;
+        text-align: center;
+      }
+
+      .kpi-grid,
+      .cards-grid,
+      .faculty-grid,
+      .decision-grid,
+      .trend-change-list li,
+      .trend-period > summary {
+        grid-template-columns: 1fr;
+      }
+
+      .facility-support-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .facility-summary {
+        grid-column: auto;
+      }
+
+      .program-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .section-head {
+        display: block;
+      }
+
+      table {
+        min-width: 680px;
+      }
+    }
+
+    @media print {
+      body {
+        background: #fff;
+      }
+
+      header {
+        color: #111;
+        background: #fff;
+        border-bottom: 4px solid #111;
+      }
+
+      .panel,
+      .kpi-card,
+      .status-card,
+      .faculty-card {
+        box-shadow: none;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="wrap hero">
+      <div>
+        <h1>USC Iovine and Young Academy's Enrollment and Capacity Tracker</h1>
+        <p class="subtitle">Spring 2027 enrollment management brief</p><p id="snapshotStatus"></p>
+        <div class="term-timing" aria-label="Spring 2027 class start timing">
+          <strong>Classes Begin</strong>
+          <span>1/11/27</span>
+          <span><b id="daysUntilClasses">--</b> days remaining</span>
+          <span id="classWeekLine"></span>
+                  <div class="term-dates" aria-label="Spring 2027 term dates">
+          <div class="term-date-line">
+            <strong>Classes End</strong>
+            <span>Friday, April 30</span>
+            <span><b id="daysUntilClassesEnd">--</b> days remaining</span>
+          </div>
+          <div class="term-date-line">
+            <strong>Study Days</strong>
+            <span>Sat–Tue, May 1–4</span>
+            <span><b id="daysUntilStudyDays">--</b> days remaining</span>
+          </div>
+          <div class="term-date-line">
+            <strong>Exams</strong>
+            <span>Wed–Wed, May 5–12</span>
+            <span><b id="daysUntilExams">--</b> days remaining</span>
+          </div>
+        </div>
+        </div>
+        <nav class="quick-nav" aria-label="Dashboard sections">
+          <a href="#kpiTitle">KPIs</a>
+          <a href="#leadershipTitle">Leadership</a>
+          <a href="#revenueTitle">Revenue</a>
+          <a href="#facilitiesTitle">Facilities</a>
+          <a href="#capacityTitle">Capacity</a>
+          <a href="#programTitle">Programs</a>
+          <a href="#trendTitle">Trends</a>
+          <a href="#sectionsTitle">All Sections</a>
+          <a href="#assistantsTitle">Course Assistants</a>
+        </nav>
+      </div>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <section class="edit-note">
+      <div class="toolbar">
+        <label for="programFilter">View program</label>
+        <select id="programFilter" aria-label="Filter dashboard by program">
+          <option value="All Programs">All Programs</option>
+        </select>
+      </div>
+    </section>
+
+    <details class="collapsible-section" open aria-labelledby="kpiTitle">
+      <summary>
+        <div class="section-head">
+          <div>
+            <h2 id="kpiTitle">KPIs</h2>
+          </div>
+          <span class="collapse-control" aria-hidden="true"></span>
+        </div>
+      </summary>
+      <div class="collapsible-content">
+        <div class="kpi-grid" id="kpiGrid"></div>
+      </div>
+    </details>
+
+    <details class="collapsible-section" open aria-labelledby="leadershipTitle">
+      <summary>
+        <div class="section-head">
+          <div>
+            <h2 id="leadershipTitle">Leadership Summary</h2>
+          </div>
+          <span class="collapse-control" aria-hidden="true"></span>
+        </div>
+      </summary>
+      <div class="collapsible-content">
+        <div class="panel">
+          <div class="panel-pad">
+            <ul class="summary-list" id="leadershipSummary"></ul>
+          </div>
+        </div>
+      </div>
+    </details>
+
+    <details class="collapsible-section" open aria-labelledby="revenueTitle">
+      <summary>
+        <div class="section-head">
+          <div>
+            <h2 id="revenueTitle">Revenue and Capacity View</h2>
+            <p>Program-level enrolled seats, remaining seats, utilization, and low-enrollment exposure.</p>
+          </div>
+          <span class="collapse-control" aria-hidden="true"></span>
+        </div>
+      </summary>
+      <div class="collapsible-content">
+        <div class="panel">
+          <div class="table-wrap">
+            <table class="metric-table" data-table="revenue">
+              <thead>
+                <tr>
+                  <th>Program</th>
+                  <th class="num">Sections</th>
+                  <th class="num">Enrolled Seats</th>
+                  <th class="num">Capacity</th>
+                  <th class="num">Open Seats</th>
+                  <th class="num">Utilization</th>
+                  <th class="num">Full</th>
+                  <th class="num">Low</th>
+                </tr>
+              </thead>
+              <tbody id="revenueBody"></tbody>
+            </table>
+          </div>
+        </div>
+        <div class="callout" id="revenueCallout"></div>
+      </div>
+    </details>
+
+    <details class="collapsible-section" open aria-labelledby="facilitiesTitle">
+      <summary>
+        <div class="section-head">
+          <div>
+            <h2 id="facilitiesTitle">Facilities &amp; Space Utilization KPIs</h2>
+            <p>Spring room assignments and capacities are awaiting verification.</p>
+          </div>
+          <span class="collapse-control" aria-hidden="true"></span>
+        </div>
+      </summary>
+      <div class="collapsible-content">
+        <div class="kpi-grid facilities-kpi-grid" id="facilitiesKpis"></div>
+        <div class="facility-support-grid">
+          <div class="panel facility-summary">
+            <div class="panel-pad">
+              <h3>Leadership Summary</h3>
+              <ul class="summary-list" id="facilitiesSummary"></ul>
+            </div>
+          </div>
+          <article class="status-card">
+            <h3>Overflow — Outside IYH</h3>
+            <span class="facility-count" id="facilitiesOverflowCount">0</span>
+            <p class="facility-card-detail" id="facilitiesOverflowDetail"></p>
+          </article>
+        </div>
+        <div class="panel facilities-heatmap-panel">
+          <div class="panel-pad">
+            <div class="heatmap-heading">
+              <div>
+                <h3>Room Use Heat Map</h3>
+                <p>Hourly room demand from 8 a.m. through 9 p.m.; combined bookings appear in both physical rooms.</p>
+              </div>
+              <div class="heatmap-controls" aria-label="Heat map controls">
+                <div class="heatmap-control-group">
+                  <span class="heatmap-control-label">View</span>
+                  <div class="segmented-control" id="heatmapViewToggle">
+                    <button type="button" data-heatmap-view="single" aria-pressed="true">Single Day</button>
+                    <button type="button" data-heatmap-view="week" aria-pressed="false">All Week</button>
+                  </div>
+                </div>
+                <div class="heatmap-control-group heatmap-day-picker" id="heatmapDayPicker">
+                  <span class="heatmap-control-label">Day</span>
+                  <div class="segmented-control">
+                    <button type="button" data-heatmap-day="Mon" aria-pressed="true">Mon</button>
+                    <button type="button" data-heatmap-day="Tue" aria-pressed="false">Tue</button>
+                    <button type="button" data-heatmap-day="Wed" aria-pressed="false">Wed</button>
+                    <button type="button" data-heatmap-day="Thu" aria-pressed="false">Thu</button>
+                    <button type="button" data-heatmap-day="Fri" aria-pressed="false">Fri</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="heatmap-scroll" id="facilitiesHeatmap"></div>
+            <div class="heatmap-legend" id="facilitiesHeatmapLegend" aria-label="Heat map legend"></div>
+          </div>
+        </div>
+      </div>
+    </details>
+
+    <details class="collapsible-section" open aria-labelledby="capacityTitle">
+      <summary>
+        <div class="section-head">
+          <div>
+            <h2 id="capacityTitle">Capacity Watch</h2>
+            <p>Sections grouped by current enrollment pressure and planning attention.</p>
+          </div>
+          <span class="collapse-control" aria-hidden="true"></span>
+        </div>
+      </summary>
+      <div class="collapsible-content">
+        <div class="cards-grid" id="capacityCards"></div>
+      </div>
+    </details>
+
+    <details class="collapsible-section" open aria-labelledby="programTitle">
+      <summary>
+        <div class="section-head">
+          <div>
+            <h2 id="programTitle">Program Summary</h2>
+            <p>Spring 2027 enrollment and capacity totals by scheduled program.</p>
+          </div>
+          <span class="collapse-control" aria-hidden="true"></span>
+        </div>
+      </summary>
+      <div class="collapsible-content">
+        <div class="program-grid" id="programGrid"></div>
+        <div class="callout" id="programSummaryNote"></div>
+      </div>
+    </details>
+
+    <details class="collapsible-section" open aria-labelledby="trendTitle">
+      <summary>
+        <div class="section-head">
+          <div>
+            <h2 id="trendTitle">Enrollment Trend Log</h2>
+            <p>Each dropdown represents one report run. Open a timeframe to see only the classes that changed during that update.</p>
+          </div>
+          <span class="collapse-control" aria-hidden="true"></span>
+        </div>
+      </summary>
+      <div class="collapsible-content">
+        <div class="panel">
+          <div class="trend-list" id="trendList"></div>
+        </div>
+      </div>
+    </details>
+
+    <details class="collapsible-section" open aria-labelledby="chartTitle">
+      <summary>
+        <div class="section-head">
+          <div>
+            <h2 id="chartTitle">Enrollment Trend Chart</h2>
+            <p>Total enrollment by program from the earliest saved report through the latest update. Use the program filter above to focus the chart.</p>
+          </div>
+          <span class="collapse-control" aria-hidden="true"></span>
+        </div>
+      </summary>
+      <div class="collapsible-content">
+        <div class="chart-panel">
+          <div class="chart-wrap">
+            <svg class="trend-chart" id="trendChart" role="img" aria-labelledby="chartTitle"></svg>
+          </div>
+          <div class="chart-legend" id="chartLegend"></div>
+        </div>
+      </div>
+    </details>
+
+    <details class="collapsible-section" open aria-labelledby="sectionsTitle">
+      <summary>
+        <div class="section-head">
+          <div>
+            <h2 id="sectionsTitle">All Sections</h2>
+            <p>Sortable master table for daily review. Use any column button to sort.</p>
+          </div>
+          <span class="collapse-control" aria-hidden="true"></span>
+        </div>
+      </summary>
+      <div class="collapsible-content">
+        <div class="table-filters" aria-label="All sections filters">
+          <div class="filter-field">
+            <label for="sectionProgramFilter">Program</label>
+            <select id="sectionProgramFilter">
+              <option value="All Programs">All Programs</option>
+            </select>
+          </div>
+          <div class="filter-field">
+            <label for="sectionStatusFilter">Status</label>
+            <select id="sectionStatusFilter">
+              <option value="All Statuses">All Statuses</option>
+              <option value="Full">Full</option>
+              <option value="Near Capacity">Near Capacity</option>
+              <option value="Healthy">Healthy</option>
+              <option value="Low">Low</option>
+              <option value="TBD">TBD</option>
+            </select>
+          </div>
+          <div class="filter-field">
+            <label for="sectionSearchFilter">Search</label>
+            <input id="sectionSearchFilter" type="search" placeholder="Course, section, instructor">
+          </div>
+          <button class="filter-reset" type="button" id="sectionFilterReset">Reset Filters</button>
+        </div>
+        <div class="panel">
+          <div class="table-wrap">
+            <table class="sections-table" data-table="sections">
+              <thead>
+                <tr>
+                  <th>Course</th>
+                  <th>Section</th>
+                  <th>Instructor</th>
+                  <th class="num">Enrolled</th>
+                  <th class="num">Capacity</th>
+                  <th class="num">Available</th>
+                  <th class="num">% Full</th>
+                  <th>Status</th>
+                </tr>
+              </thead>
+              <tbody id="sectionsBody"></tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </details>
+
+    <details class="collapsible-section" aria-labelledby="assistantsTitle">
+      <summary>
+        <div class="section-head">
+          <div>
+            <h2 id="assistantsTitle">Course Assistant Hiring Needs</h2>
+          </div>
+          <span class="collapse-control" aria-hidden="true"></span>
+        </div>
+      </summary>
+      <div class="collapsible-content">
+        <div class="panel">
+          <div class="table-wrap">
+            <table class="metric-table" data-table="assistants">
+              <thead>
+                <tr>
+                  <th>Priority</th>
+                  <th>Course</th>
+                  <th>Section(s)</th>
+                  <th>Instructor</th>
+                  <th class="num">Enrollment</th>
+                  <th>Need</th>
+                  <th>Status</th>
+                  <th>Notes</th>
+                </tr>
+              </thead>
+              <tbody id="assistantsBody"></tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </details>
+
+  </main>
+
+  <footer>
+    <div class="wrap">Static HTML dashboard. No external libraries, logos, tracking, or server required.</div>
+  </footer>
+
+  <button class="back-to-top" id="backToTop" type="button" aria-label="Back to top">↑</button>
+
+  <script src="data.js"></script>
+  <script>
+    /*
+      DAILY EDIT AREA
+      Update this object when a new registration snapshot is available.
+      The page recalculates KPIs, statuses, availability, and percent full.
+    */
+
+    let activeProgram = dashboardData.defaultProgram || "All Programs";
+    let sectionFilters = {
+      program: "All Programs",
+      status: "All Statuses",
+      search: ""
+    };
+    let facilitiesHeatmapView = "single";
+    let facilitiesHeatmapDay = "Mon";
+
+    const facilityWeekdays = ["Mon", "Tue", "Wed", "Thu", "Fri"];
+    const facilityHeatmapHours = Array.from({ length: 14 }, (_, index) => index + 8);
+
+
+
+
+
+
+
+
+
+    dashboardData.sections = dashboardData.sections.map(item => ({
+      ...item
+    }));
+
+    const isMetricSection = item => item.metrics !== false && Number.isFinite(item.enrolled) && Number.isFinite(item.capacity);
+    const metricSections = sections => sections.filter(isMetricSection);
+    const percentFull = item => isMetricSection(item) && item.capacity > 0 ? Math.round((item.enrolled / item.capacity) * 100) : null;
+    const availableSeats = item => isMetricSection(item) ? Math.max(item.capacity - item.enrolled, 0) : null;
+    const displayValue = value => value === null || value === undefined ? "TBD" : value;
+    const displayPercent = item => {
+      const pct = percentFull(item);
+      return pct === null ? "TBD" : `${pct}%`;
+    };
+
+    function filteredSections() {
+      if (activeProgram === "All Programs") return dashboardData.sections;
+      return dashboardData.sections.filter(item => item.program === activeProgram);
+    }
+
+    function filteredSectionRows() {
+      const search = sectionFilters.search.trim().toLowerCase();
+      return dashboardData.sections.filter(item => {
+        const status = statusFor(item).label;
+        const searchable = `${item.program} ${item.course} ${item.section} ${item.instructor}`.toLowerCase();
+        const programMatches = sectionFilters.program === "All Programs" || item.program === sectionFilters.program;
+        const statusMatches = sectionFilters.status === "All Statuses" || status === sectionFilters.status;
+        const searchMatches = !search || searchable.includes(search);
+        return programMatches && statusMatches && searchMatches;
+      });
+    }
+
+    function programNames() {
+      const order = ["Undergraduate ACAD", "Graduate IDSN", "Product Innovation"];
+      const programs = Array.from(new Set(dashboardData.sections.map(item => item.program)))
+        .sort((a, b) => {
+          const aIndex = order.indexOf(a);
+          const bIndex = order.indexOf(b);
+          if (aIndex === -1 && bIndex === -1) return a.localeCompare(b);
+          if (aIndex === -1) return 1;
+          if (bIndex === -1) return -1;
+          return aIndex - bIndex;
+        });
+      return ["All Programs", ...programs];
+    }
+
+    function statusFor(item) {
+      if (!isMetricSection(item) && item.note && item.note.includes("Cancelled")) {
+        return { label: "Cancelled", className: "cancelled" };
+      }
+      if (!isMetricSection(item) && item.note && item.note.includes("Cross-listed")) {
+        return { label: "Cross-listed", className: "crosslisted" };
+      }
+      if (!isMetricSection(item)) return { label: "TBD", className: "tbd" };
+      const pct = percentFull(item);
+      if (item.capacity > 0 && item.enrolled >= item.capacity) return { label: "Full", className: "full" };
+      if (pct >= dashboardData.nearThreshold) return { label: "Near Capacity", className: "near" };
+      if (pct < dashboardData.lowThreshold) return { label: "Low", className: "low" };
+      return { label: "Healthy", className: "healthy" };
+    }
+
+    function shortCourse(name) {
+      return name.replace("Professional Practices", "Prof. Practices")
+        .replace("Processes & Perspectives", "Processes")
+        .replace("Industry & Impact Projects", "Industry & Impact")
+        .replace("Product Design for UX", "Product Design UX")
+        .replace("Intro to Machine Intelligence", "Machine Intelligence")
+        .replace("Finance for Entrepreneurs", "Finance")
+        .replace("Product Management (CBL)", "Product Management");
+    }
+
+    function badge(status) {
+      return `<span class="badge ${status.className}">${status.label}</span>`;
+    }
+
+    function displayAvailable(item) {
+      if (!isMetricSection(item) && item.note && item.note.includes("Cancelled")) return "Cancelled";
+      if (!isMetricSection(item) && item.note && item.note.includes("Cross-listed")) return "Cross-listed";
+      return displayValue(availableSeats(item));
+    }
+
+    function displayCapacityPercent(item) {
+      if (!isMetricSection(item) && item.note && item.note.includes("Cancelled")) return "Cancelled";
+      if (!isMetricSection(item) && item.note && item.note.includes("Cross-listed")) return "Cross-listed";
+      return displayPercent(item);
+    }
+
+    function trendClass(change) {
+      if (change > 0) return "trend-up";
+      if (change < 0) return "trend-down";
+      return "trend-flat";
+    }
+
+    function trendLabel(change) {
+      if (change > 0) return `+${change}`;
+      return `${change}`;
+    }
+
+    function renderKpis() {
+      const sections = metricSections(filteredSections());
+      const full = sections.filter(item => statusFor(item).className === "full").length;
+      const near = sections.filter(item => statusFor(item).className === "near").length;
+      const healthy = sections.filter(item => statusFor(item).className === "healthy").length;
+      const low = sections.filter(item => statusFor(item).className === "low").length;
+      const totalEnrollment = sections.reduce((sum, item) => sum + item.enrolled, 0);
+      const totalCapacity = sections.reduce((sum, item) => sum + item.capacity, 0);
+      const sectionsWithWaitlists = sections.filter(item => Number(item.waitlisted || 0) > 0).length;
+      const waitlistedStudents = sections.reduce((sum, item) => sum + Number(item.waitlisted || 0), 0);
+      const visibleSectionIds = new Set(sections.map(item => item.section));
+      const netChange = latestRunChanges()
+        .filter(item => visibleSectionIds.has(item.section))
+        .reduce((sum, item) => sum + (item.current - item.previous), 0);
+
+      const cards = [
+        { name: "Overall Utilization", value: `${totalCapacity ? Math.round((totalEnrollment / totalCapacity) * 100) : 0}%`, detail: "enrolled seats vs. total capacity" },
+                { name: "Student Credit Hours", value: sections.reduce((sum, item) => sum + (item.enrolled * (window.sectionCredits[item.section] || 0)), 0), detail: "fixed-unit sections only; excludes variable or unknown units" },
+        { name: "Sections", value: sections.length, detail: "tracked sections" },
+        { name: "Enrollment", value: totalEnrollment, detail: `${totalCapacity} total seats` },
+        { name: "Full", value: full, detail: "at capacity" },
+        { name: "Near Capacity", value: near, detail: `${dashboardData.nearThreshold}% or higher` },
+        { name: "Healthy", value: healthy, detail: `${dashboardData.lowThreshold}-${dashboardData.nearThreshold - 1}% full` },
+        { name: "Low", value: low, detail: `below ${dashboardData.lowThreshold}%` },
+        { name: "Sections With Waitlists", value: sectionsWithWaitlists, detail: "active waitlists" },
+        { name: "Waitlisted Students", value: waitlistedStudents, detail: "section waitlist entries; students may appear more than once" },
+        { name: "Net Change", value: netChange >= 0 ? `+${netChange}` : netChange, detail: dashboardData.netChangeLabel || "from latest update" }
+      ];
+
+      document.getElementById("kpiGrid").innerHTML = cards.map(card => `
+        <article class="kpi-card">
+          <div class="name">${card.name}</div>
+          <div class="value">${card.value}</div>
+          <div class="detail">${card.detail}</div>
+        </article>
+      `).join("");
+    }
+
+    function latestPeriodChanges(periodName) {
+      return dashboardData.trendLog.filter(item => trendPeriod(item.date) === periodName && item.current !== item.previous);
+    }
+
+    function latestRunChanges() { return dashboardData.latestChanges || []; }
+
+    function programMetrics() {
+      return programNames().filter(program => program !== "All Programs").map(program => {
+        const sections = metricSections(dashboardData.sections.filter(item => item.program === program));
+        const enrolled = sections.reduce((sum, item) => sum + item.enrolled, 0);
+        const capacity = sections.reduce((sum, item) => sum + item.capacity, 0);
+        const openSeats = Math.max(capacity - enrolled, 0);
+        const utilization = capacity ? Math.round((enrolled / capacity) * 100) : 0;
+        const full = sections.filter(item => statusFor(item).className === "full").length;
+        const near = sections.filter(item => statusFor(item).className === "near").length;
+        const low = sections.filter(item => statusFor(item).className === "low").length;
+        return { program, sections, enrolled, capacity, openSeats, utilization, full, near, low };
+      });
+    }
+
+    function revenueMetricSections() { return metricSections(dashboardData.sections); }
+
+    function revenueProgramMetrics() {
+      return programNames().filter(program => program !== "All Programs").map(program => {
+        const sections = revenueMetricSections().filter(item => item.program === program);
+        const enrolled = sections.reduce((sum, item) => sum + item.enrolled, 0);
+        const capacity = sections.reduce((sum, item) => sum + item.capacity, 0);
+        const openSeats = Math.max(capacity - enrolled, 0);
+        const utilization = capacity ? Math.round((enrolled / capacity) * 100) : 0;
+        const full = sections.filter(item => statusFor(item).className === "full").length;
+        const low = sections.filter(item => statusFor(item).className === "low").length;
+        return { program, sections, enrolled, capacity, openSeats, utilization, full, low };
+      });
+    }
+
+    function highDemandSummary(sections) {
+      const highDemandSections = sections
+        .filter(item => ["full", "near"].includes(statusFor(item).className))
+        .sort((a, b) => {
+          const pctDiff = percentFull(b) - percentFull(a);
+          if (pctDiff !== 0) return pctDiff;
+          return b.enrolled - a.enrolled;
+        });
+
+      if (activeProgram !== "All Programs") {
+        return highDemandSections
+          .slice(0, 5)
+          .map(item => `${shortCourse(item.course)} ${item.section}`)
+          .join("; ");
+      }
+
+      return programNames()
+        .filter(program => program !== "All Programs")
+        .map(program => {
+          const items = highDemandSections
+            .filter(item => item.program === program)
+            .slice(0, 3)
+            .map(item => `${shortCourse(item.course)} ${item.section}`)
+            .join(", ");
+          return items ? `${programFilterLabel(program)}: ${items}` : "";
+        })
+        .filter(Boolean)
+        .join("; ");
+    }
+
+    function todaysAddedSectionsSummary() { return ""; }
+
+    function renderLeadershipSummary() {
+      const sections = metricSections(filteredSections());
+      const programLabel = activeProgram === "All Programs"
+        ? "USC Iovine and Young Academy programs"
+        : activeProgram;
+      const totalEnrollment = sections.reduce((sum, item) => sum + item.enrolled, 0);
+      const totalCapacity = sections.reduce((sum, item) => sum + item.capacity, 0);
+      const utilization = totalCapacity ? Math.round((totalEnrollment / totalCapacity) * 100) : 0;
+      const full = sections.filter(item => statusFor(item).className === "full").length;
+      const near = sections.filter(item => statusFor(item).className === "near").length;
+      const low = sections.filter(item => statusFor(item).className === "low").length;
+      const visibleIds = new Set(sections.map(s => s.section));
+      const latestChanges = latestRunChanges().filter(s => visibleIds.has(s.section));
+      const latestNet = latestChanges.reduce((sum, item) => sum + item.current - item.previous, 0);
+      const latestGains = latestChanges
+        .filter(item => item.current > item.previous)
+        .reduce((sum, item) => sum + item.current - item.previous, 0);
+      const latestDrops = latestChanges
+        .filter(item => item.current < item.previous)
+        .reduce((sum, item) => sum + item.previous - item.current, 0);
+
+      document.getElementById("leadershipSummary").innerHTML = [
+        `${programLabel} currently have ${totalEnrollment} enrolled seats across ${sections.length} tracked sections, with ${utilization}% overall capacity utilization.`,
+        `${full} sections are full and ${near} additional sections are near capacity, creating the clearest student-access pressure points.`,
+        `${low} sections are below 50% enrollment and may need advising visibility, promotion, or cancellation-risk review.`,
+        `The latest trend log shows ${latestGains} added seats and ${latestDrops} dropped seats, for a net change of ${latestNet >= 0 ? "+" : ""}${latestNet}.`,
+        todaysAddedSectionsSummary(),
+      ].filter(Boolean).map(item => `<li>${item}</li>`).join("");
+
+    }
+
+    function renderRevenueView() {
+      const metrics = revenueProgramMetrics();
+      document.getElementById("revenueBody").innerHTML = metrics.map(item => `
+        <tr>
+          <td>${programDisplayName(item.program)}</td>
+          <td class="num">${item.sections.length}</td>
+          <td class="num">${item.enrolled}</td>
+          <td class="num">${item.capacity}</td>
+          <td class="num">${item.openSeats}</td>
+          <td class="num">${item.utilization}%</td>
+          <td class="num">${item.full}</td>
+          <td class="num">${item.low}</td>
+        </tr>
+      `).join("");
+
+      const revenueRows = revenueMetricSections();
+      const totalEnrollment = revenueRows.reduce((sum, item) => sum + item.enrolled, 0);
+      const totalCapacity = revenueRows.reduce((sum, item) => sum + item.capacity, 0);
+      const totalOpen = totalCapacity - totalEnrollment;
+      document.getElementById("revenueCallout").innerHTML =
+        `<strong>Counting method:</strong> Each USC section is counted once under its scheduled ACAD, IDSN, or PRIN program. Cancelled sections and sections without published seat capacity are excluded from capacity metrics. Current totals: ${totalEnrollment} enrolled seats and ${totalOpen} open seats across ${revenueRows.length} sections.`;
+    }
+
+    function normalizeFacilityLocation(location) {
+      return String(location || "")
+        .trim()
+        .toUpperCase()
+        .replace(/\s+/g, " ")
+        .replace(/^IYH\s*/, "IYH ")
+        .replace(/\s*\/\s*/g, "/");
+    }
+
+    function matchedFacilityRoom(location) {
+      const compactLocation = normalizeFacilityLocation(location).replace(/\s/g, "");
+      const combinedRooms = ["IYH 210/211", "IYH 212/213"];
+      const singleRooms = ["IYH 210", "IYH 211", "IYH 212", "IYH 213", "IYH 111", "IYH 107"];
+      return [...combinedRooms, ...singleRooms].find(room => room.replace(/\s/g, "") === compactLocation) || null;
+    }
+
+    function facilitySections() {
+      return dashboardData.sections
+        .filter(item => /^(ACAD|IDSN)\s/.test(item.course))
+        .filter(item => statusFor(item).className !== "cancelled")
+        .map(item => ({ ...item, ...(facilityMeetingData[item.section] || {}) }))
+        .filter(item => item.location);
+    }
+
+    function facilitySectionFor(sectionId) {
+      const matches = dashboardData.sections.filter(item => item.section === sectionId);
+      return matches.find(item => item.metrics !== false && Number.isFinite(item.enrolled))
+        || matches.find(item => Number.isFinite(item.enrolled))
+        || null;
+    }
+
+    function facilityMeetingBookings() {
+      const explicitSectionIds = new Set(excelFacilityMeetingData.map(item => item.section));
+      const explicitBookings = excelFacilityMeetingData.map(meeting => {
+        const section = facilitySectionFor(meeting.section);
+        const facilityRoom = matchedFacilityRoom(meeting.location);
+        if (!section || !facilityRoom) return null;
+        const capacity = roomCapacity[facilityRoom];
+        const calculatedFillRate = capacity ? (section.enrolled / capacity) * 100 : 0;
+        const fillRate = Number.isFinite(meeting.fillRateOverride) ? meeting.fillRateOverride : calculatedFillRate;
+        return {
+          ...section,
+          ...meeting,
+          facilityRoom,
+          capacity,
+          fillRate,
+          effectiveEnrollment: capacity * (fillRate / 100)
+        };
+      }).filter(Boolean);
+
+      const preservedBookings = facilitySections()
+        .filter(item => !explicitSectionIds.has(item.section))
+        .filter(item => ["IYH 111", "IYH 107"].includes(matchedFacilityRoom(item.location)))
+        .flatMap(item => (facilityScheduleData[item.section] || []).map(schedule => {
+          const facilityRoom = matchedFacilityRoom(item.location);
+          const capacity = roomCapacity[facilityRoom];
+          const fillRate = capacity ? (item.enrolled / capacity) * 100 : 0;
+          return {
+            ...item,
+            ...schedule,
+            facilityRoom,
+            capacity,
+            fillRate,
+            effectiveEnrollment: item.enrolled
+          };
+        }));
+
+      return [...explicitBookings, ...preservedBookings];
+    }
+
+    function facilityUtilization(item, room) {
+      return room && roomCapacity[room] && Number.isFinite(item.enrolled)
+        ? (item.enrolled / roomCapacity[room]) * 100
+        : 0;
+    }
+
+    function facilityPercent(numerator, denominator) {
+      return denominator ? Math.round((numerator / denominator) * 100) : 0;
+    }
+
+    function formatFacilityTime(time) {
+      if (!time || time === "TBA") return "TBA";
+      const [hourValue, minute] = time.split(":").map(Number);
+      const suffix = hourValue >= 12 ? "p.m." : "a.m.";
+      const hour = hourValue % 12 || 12;
+      return `${hour}${minute ? `:${String(minute).padStart(2, "0")}` : ""} ${suffix}`;
+    }
+
+    function physicalRoomsFor(room) {
+      if (!room) return [];
+      if (room === "IYH 210/211") return ["IYH 210", "IYH 211"];
+      if (room === "IYH 212/213") return ["IYH 212", "IYH 213"];
+      return [room];
+    }
+
+    function facilityMetrics() {
+      const sections = facilitySections();
+      const explicitSectionIds = new Set(excelFacilityMeetingData.map(item => item.section));
+      const unassignedSections = sections.filter(item => !explicitSectionIds.has(item.section));
+      const bookings = facilityMeetingBookings();
+      const scoped = [...new Map(bookings.map(item => [item.section, item])).values()];
+      const overflow = unassignedSections.filter(item => {
+        const location = normalizeFacilityLocation(item.location);
+        return location && location !== "TBA" && !location.includes("ONLINE") && !matchedFacilityRoom(location);
+      });
+      const unassigned = unassignedSections.filter(item => normalizeFacilityLocation(item.location) === "TBA");
+      const physicalRooms = ["IYH 210", "IYH 211", "IYH 212", "IYH 213", "IYH 111", "IYH 107"];
+      const complianceRooms = ["IYH 210", "IYH 211", "IYH 212", "IYH 213"];
+      const heatmapBookings = facilityHeatmapBookings(bookings);
+      const roomRows = physicalRooms.map(room => {
+        const capacity = roomCapacity[room];
+        const roomBookings = heatmapBookings.filter(item => item.room === room);
+        const roomSectionIds = new Set(roomBookings.map(item => item.section));
+        const roomSections = scoped.filter(item => roomSectionIds.has(item.section));
+        const occupiedCells = facilityWeekdays.flatMap(day => facilityHeatmapHours
+          .map(hour => facilityHeatmapCellData(heatmapBookings, day, room, hour))
+          .filter(cell => cell.bookings.length));
+        const utilizationEnrollment = occupiedCells.reduce((sum, cell) => sum + cell.totalEnrollment, 0);
+        const utilizationCapacity = occupiedCells.reduce((sum, cell) => sum + cell.totalCapacity, 0);
+        const utilization = utilizationCapacity
+          ? Math.round((utilizationEnrollment / utilizationCapacity) * 100)
+          : 0;
+        const eightAm = new Set(roomBookings
+          .filter(item => item.start === 8 * 60)
+          .map(item => item.day)).size;
+        const isComplianceRoom = complianceRooms.includes(room);
+        const late = roomBookings.filter(item => item.end > 21 * 60).length;
+        return {
+          room,
+          capacity,
+          sections: roomSections,
+          meetings: roomBookings.length,
+          utilizationSections: roomSections,
+          utilization,
+          eightAm,
+          eightAmCompliance: isComplianceRoom ? facilityPercent(eightAm, facilityWeekdays.length) : null,
+          late,
+          lateCompliance: facilityPercent(roomBookings.length - late, roomBookings.length)
+        };
+      });
+      const occupiedCells = facilityWeekdays.flatMap(day => physicalRooms.flatMap(room => facilityHeatmapHours
+        .map(hour => facilityHeatmapCellData(heatmapBookings, day, room, hour))
+        .filter(cell => cell.bookings.length)));
+      const complianceBookings = heatmapBookings.filter(item => complianceRooms.includes(item.room));
+      const eightAm = new Set(complianceBookings
+        .filter(item => item.start === 8 * 60)
+        .map(item => `${item.day}|${item.room}`)).size;
+      const complianceSlots = complianceRooms.length * facilityWeekdays.length;
+      const late = heatmapBookings.filter(item => item.end > 21 * 60);
+      const totalUtilizationCapacity = occupiedCells.reduce((sum, cell) => sum + cell.totalCapacity, 0);
+      const averageUtilization = totalUtilizationCapacity
+        ? Math.round((occupiedCells.reduce((sum, cell) => sum + cell.totalEnrollment, 0) / totalUtilizationCapacity) * 100)
+        : 0;
+      const overall = {
+        room: "All rooms · 8am compliance: 210–213",
+        capacity: physicalRooms.reduce((sum, room) => sum + roomCapacity[room], 0),
+        sections: scoped.length,
+        meetings: heatmapBookings.length,
+        utilization: averageUtilization,
+        eightAm,
+        complianceSlots,
+        eightAmCompliance: facilityPercent(eightAm, complianceSlots),
+        late: late.length,
+        lateCompliance: facilityPercent(heatmapBookings.length - late.length, heatmapBookings.length)
+      };
+
+      return {
+        scoped,
+        overflow,
+        unassigned,
+        roomRows,
+        physicalRooms,
+        complianceRooms,
+        averageUtilization,
+        eightAm,
+        late,
+        overall,
+        underFifty: roomRows.filter(item => item.utilizationSections.length && item.utilization < 50)
+      };
+    }
+
+    function facilityTimeMinutes(time) {
+      if (!time || time === "TBA") return null;
+      const [hour, minute] = time.split(":").map(Number);
+      return Number.isFinite(hour) && Number.isFinite(minute) ? hour * 60 + minute : null;
+    }
+
+    function facilityHeatmapTimeLabel(hour) {
+      const suffix = hour >= 12 ? "pm" : "am";
+      return `${hour % 12 || 12}${suffix}`;
+    }
+
+    function escapeHeatmapText(value) {
+      return String(value)
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;");
+    }
+
+    function facilityHeatmapBookings(sourceBookings = facilityMeetingBookings()) {
+      return sourceBookings.flatMap(item => {
+        const start = facilityTimeMinutes(item.startTime);
+        const end = facilityTimeMinutes(item.endTime);
+        if (start === null || end === null) return [];
+        return [...new Set(item.days)]
+          .filter(day => facilityWeekdays.includes(day))
+          .flatMap(day => physicalRoomsFor(item.facilityRoom).map(room => ({
+              day,
+              room,
+              section: item.section,
+              course: item.course,
+              start,
+              end,
+              startTime: item.startTime,
+              endTime: item.endTime,
+              facilityRoom: room,
+              enrolled: item.enrolled,
+              effectiveEnrollment: item.effectiveEnrollment,
+              capacity: item.capacity,
+              fillRate: item.fillRate
+            })));
+      });
+    }
+
+    function facilityHeatmapCellData(bookings, day, room, hour) {
+      const blockStart = hour * 60;
+      const blockEnd = blockStart + 60;
+      const cellBookings = bookings.filter(item =>
+        item.day === day && item.room === room && item.start < blockEnd && item.end > blockStart
+      );
+      const totalEnrollment = cellBookings.reduce((sum, item) => sum + item.effectiveEnrollment, 0);
+      const totalCapacity = cellBookings.reduce((sum, item) => sum + item.capacity, 0);
+      return {
+        bookings: cellBookings,
+        totalEnrollment,
+        totalCapacity,
+        fillRate: totalCapacity ? Math.round((totalEnrollment / totalCapacity) * 100) : 0
+      };
+    }
+
+    function facilityHeatmapCell(bookings, day, room, hour) {
+      const cell = facilityHeatmapCellData(bookings, day, room, hour);
+      const cellBookings = cell.bookings;
+      if (!cellBookings.length) {
+        return `<div class="heatmap-cell empty" role="gridcell" aria-label="${room}, ${facilityHeatmapTimeLabel(hour)}: empty"></div>`;
+      }
+
+      const detail = cellBookings
+        .map(item => `${shortCourse(item.course)} ${item.section}: ${Math.round(item.fillRate)}%`)
+        .join("; ");
+      const safeDetail = escapeHeatmapText(detail);
+
+      const fillRate = cell.fillRate;
+      const level = fillRate >= 100 ? 5 : fillRate >= 75 ? 4 : fillRate >= 50 ? 3 : fillRate >= 25 ? 2 : 1;
+      return `<div class="heatmap-cell level-${level}" role="gridcell" title="${safeDetail}" aria-label="${room}, ${facilityHeatmapTimeLabel(hour)}: ${fillRate}% fill rate">${fillRate}%</div>`;
+    }
+
+    function renderFacilityHeatmapDay(day, bookings) {
+      const dayNames = { Mon: "Monday", Tue: "Tuesday", Wed: "Wednesday", Thu: "Thursday", Fri: "Friday" };
+      const rooms = ["IYH 210", "IYH 211", "IYH 212", "IYH 213", "IYH 111", "IYH 107"];
+      const header = [
+        `<div class="heatmap-corner" role="columnheader">Room</div>`,
+        ...facilityHeatmapHours.map(hour => `<div class="heatmap-time" role="columnheader">${facilityHeatmapTimeLabel(hour)}</div>`)
+      ].join("");
+      const rows = rooms.map(room => [
+        `<div class="heatmap-room" role="rowheader">${room.replace("IYH ", "")}</div>`,
+        ...facilityHeatmapHours.map(hour => facilityHeatmapCell(bookings, day, room, hour))
+      ].join("")).join("");
+
+      return `
+        <section class="heatmap-day" aria-label="${dayNames[day]} room heat map">
+          <h4 class="heatmap-day-title">${dayNames[day]}</h4>
+          <div class="heatmap-grid" role="grid">${header}${rows}</div>
+        </section>
+      `;
+    }
+
+    function renderFacilitiesHeatmap() {
+      const target = document.getElementById("facilitiesHeatmap");
+      const legend = document.getElementById("facilitiesHeatmapLegend");
+      if (!target || !legend) return;
+      const bookings = facilityHeatmapBookings();
+      const days = facilitiesHeatmapView === "week" ? facilityWeekdays : [facilitiesHeatmapDay];
+      target.innerHTML = days.map(day => renderFacilityHeatmapDay(day, bookings)).join("");
+
+      legend.innerHTML = `
+        <strong>Fill Rate</strong>
+        <span class="heatmap-legend-swatch" style="background:#fffefa"></span><span>Empty</span>
+        <span class="heatmap-legend-swatch" style="background:#f0e5cf"></span><span>&lt;25%</span>
+        <span class="heatmap-legend-swatch" style="background:#d7c596"></span><span>25–49%</span>
+        <span class="heatmap-legend-swatch" style="background:#9da275"></span><span>50–74%</span>
+        <span class="heatmap-legend-swatch" style="background:#526548"></span><span>75–99%</span>
+        <span class="heatmap-legend-swatch" style="background:var(--cardinal-dark)"></span><span>100%+</span>
+      `;
+    }
+
+    function syncFacilitiesHeatmapControls() {
+      document.querySelectorAll("[data-heatmap-view]").forEach(button => {
+        button.setAttribute("aria-pressed", button.dataset.heatmapView === facilitiesHeatmapView ? "true" : "false");
+      });
+      document.querySelectorAll("[data-heatmap-day]").forEach(button => {
+        button.setAttribute("aria-pressed", button.dataset.heatmapDay === facilitiesHeatmapDay ? "true" : "false");
+      });
+      document.getElementById("heatmapDayPicker").hidden = facilitiesHeatmapView === "week";
+    }
+
+    function setupFacilitiesHeatmapControls() {
+      document.querySelectorAll("[data-heatmap-view]").forEach(button => {
+        button.addEventListener("click", () => {
+          facilitiesHeatmapView = button.dataset.heatmapView;
+          syncFacilitiesHeatmapControls();
+          renderFacilitiesHeatmap();
+        });
+      });
+      document.querySelectorAll("[data-heatmap-day]").forEach(button => {
+        button.addEventListener("click", () => {
+          facilitiesHeatmapDay = button.dataset.heatmapDay;
+          syncFacilitiesHeatmapControls();
+          renderFacilitiesHeatmap();
+        });
+      });
+      syncFacilitiesHeatmapControls();
+    }
+
+    function renderFacilities() {
+ const panel=document.querySelector('[aria-labelledby="facilitiesTitle"] .collapsible-content');
+ panel.innerHTML='<div class="callout"><strong>Spring room data is not yet verified.</strong> Room utilization, compliance, and the heat map will be available after spring room assignments and capacities are confirmed.</div>';
+}
+
+    function renderCapacityCards() {
+      const sections = metricSections(filteredSections());
+      const groups = [
+        { title: "Full", className: "full", items: sections.filter(item => statusFor(item).className === "full") },
+        { title: "Near Capacity", className: "near", items: sections.filter(item => statusFor(item).className === "near") },
+        { title: "Healthy", className: "healthy", items: sections.filter(item => statusFor(item).className === "healthy") },
+        { title: "Low Enrollment", className: "low", items: sections.filter(item => statusFor(item).className === "low") }
+      ];
+
+      document.getElementById("capacityCards").innerHTML = groups.map(group => `
+        <article class="status-card">
+          <h3>${badge({ label: group.title, className: group.className })}</h3>
+          <ul class="course-list">
+            ${group.items.map(item => `
+              <li>
+                <span>${shortCourse(item.course)} <small>${item.section}${item.note ? ` | ${item.note}` : ""}</small></span>
+                <strong>${item.enrolled}/${item.capacity}</strong>
+              </li>
+            `).join("") || "<li><span>No sections</span><strong>-</strong></li>"}
+          </ul>
+        </article>
+      `).join("");
+    }
+
+    function renderTrendLog() {
+      const visibleTrends = activeProgram === "All Programs"
+        ? dashboardData.trendLog
+        : dashboardData.trendLog.filter(item => {
+            const section = dashboardData.sections.find(sectionItem => sectionItem.section === item.section);
+            return section && section.program === activeProgram;
+          });
+
+      const groups = new Map();
+      visibleTrends.forEach(item => {
+        const config = periodConfig(item.date);
+        if (!groups.has(config.key)) {
+          groups.set(config.key, { ...config, items: [] });
+        }
+        groups.get(config.key).items.push(item);
+      });
+
+      const sortedGroups = [...groups.values()].sort((a, b) => b.rank - a.rank);
+
+      const trendList = document.getElementById("trendList");
+      if (!trendList) return;
+      trendList.innerHTML = sortedGroups.map((group, index) => {
+        const changedItems = group.items.filter(item => item.current !== item.previous);
+        const net = changedItems.reduce((sum, item) => sum + item.current - item.previous, 0);
+        const gains = changedItems.filter(item => item.current > item.previous).length;
+        const drops = changedItems.filter(item => item.current < item.previous).length;
+        const itemsToShow = changedItems.length ? changedItems : group.items;
+        const changeSummary = changedItems.length
+          ? `${changedItems.length} changed section${changedItems.length === 1 ? "" : "s"} | ${gains} section gain${gains === 1 ? "" : "s"} | ${drops} section drop${drops === 1 ? "" : "s"}`
+          : "No enrollment changes";
+        return `
+          <details class="trend-period" ${index === 0 ? "open" : ""}>
+            <summary>
+              <span class="trend-period-title">${group.title}</span>
+              <span class="trend-period-meta">${changeSummary}</span>
+              <span class="trend-period-net ${trendClass(net)}">Net enrollment: ${trendLabel(net)}</span>
+            </summary>
+            <div class="trend-period-body">
+              <ul class="trend-change-list">
+                ${itemsToShow.map(item => {
+                  const change = item.current - item.previous;
+                  const status = change > 0 ? { label: "Growing", className: "healthy" } : change < 0 ? { label: "Declining", className: "full" } : { label: "Stable", className: "watch" };
+                  return `
+                    <li>
+                      <span><strong>${item.course}</strong><br><small>Section ${item.section}</small></span>
+                      <span>Previous: <strong>${item.previous}</strong></span>
+                      <span>Current: <strong>${item.current}</strong></span>
+                      <span class="${trendClass(change)}">${trendLabel(change)}</span>
+                      <span>${badge(status)}</span>
+                    </li>
+                  `;
+                }).join("")}
+              </ul>
+            </div>
+          </details>
+        `;
+      }).join("") || `<div class="trend-period"><div class="trend-period-body">Spring baseline saved. Changes will appear after a later refresh.</div></div>`;
+    }
+
+    function periodConfig(date) {
+      const match = date.match(/^(\d{1,2})\/(\d{1,2})\/(\d{4})\s+(AM|PM|Afternoon|Late Evening)(?:\s+Baseline)?$/i);
+      const key = date.toLowerCase().replace(/[^a-z0-9]+/g, "-");
+      if (!match) return { key, title: `${date} Update`, label: date, rank: 0 };
+
+      const [, month, day, year, period] = match;
+      const normalizedPeriod = period.toLowerCase();
+      const hour = normalizedPeriod === "am" ? 9 : normalizedPeriod === "late evening" ? 21 : 15;
+      const labelPeriod = normalizedPeriod === "am" ? "AM" : normalizedPeriod === "late evening" ? "Late" : "PM";
+      return {
+        key,
+        title: date.includes("Baseline") ? date : `${date} Update`,
+        label: `${Number(month)}/${Number(day)} ${labelPeriod}`,
+        rank: Date.UTC(Number(year), Number(month) - 1, Number(day), hour)
+      };
+    }
+
+    function trendPeriod(date) {
+      const latestRank = Math.max(...dashboardData.trendLog.map(item => periodConfig(item.date).rank));
+      return periodConfig(date).rank === latestRank ? "Latest" : "Previous";
+    }
+
+    function sectionKey(item) {
+      return `${item.program}|${item.section}`;
+    }
+
+    function buildTrendSnapshots() {
+ const history=dashboardData.history.filter(h=>h.totals);
+ const periods=history.map((h,i)=>({key:'snapshot'+i,label:h.snapshot}));
+ const rows=programNames().filter(p=>p!=='All Programs').map(program=>{const row={row:{program}};history.forEach((h,i)=>row['snapshot'+i]=h.totals[program]||0);return row;});
+ return {periods,rows};
+}
+
+    function programColor(program) {
+      const colors = {
+        "Undergraduate ACAD": "#9d1b1e",
+        "Graduate IDSN": "#49664d",
+        "Product Innovation": "#8a6030"
+      };
+      return colors[program] || "#647b86";
+    }
+
+    function programShortName(program) {
+      const names = {
+        "Undergraduate ACAD": "ACAD",
+        "Graduate IDSN": "IDSN",
+        "Product Innovation": "PRIN"
+      };
+      return names[program] || program;
+    }
+
+    function programClass(program) {
+      const classes = {
+        "Undergraduate ACAD": "acad",
+        "Graduate IDSN": "idsn",
+        "Product Innovation": "prin"
+      };
+      return classes[program] || "";
+    }
+
+    function programFilterLabel(program) {
+      const labels = {
+        "All Programs": "All IYA Programs",
+        "Undergraduate ACAD": "ACAD - Undergraduate",
+        "Graduate IDSN": "IDSN - Graduate",
+        "Product Innovation": "PRIN - Product Innovation"
+      };
+      return labels[program] || program;
+    }
+
+    function programDisplayName(program) {
+      const labels = {
+        "Undergraduate ACAD": "Undergraduate ACAD",
+        "Graduate IDSN": "Graduate IDSN",
+        "Product Innovation": "PRIN - Product Innovation"
+      };
+      return labels[program] || program;
+    }
+
+    function renderTrendChart() {
+      const svg = document.getElementById("trendChart");
+      const legend = document.getElementById("chartLegend");
+      const { periods, rows } = buildTrendSnapshots();
+      const visibleRows = activeProgram === "All Programs"
+        ? rows
+        : rows.filter(item => item.row.program === activeProgram);
+      const programs = activeProgram === "All Programs"
+        ? programNames().filter(program => program !== "All Programs" && visibleRows.some(item => item.row.program === program))
+        : [activeProgram];
+
+      const totals = programs.map(program => ({
+        program,
+        values: periods.map(period => visibleRows
+          .filter(item => item.row.program === program)
+          .reduce((sum, item) => sum + item[period.key], 0))
+      }));
+
+      const width = 900;
+      const height = 340;
+      const pad = { top: 28, right: 34, bottom: 54, left: 64 };
+      const maxValue = Math.max(10, ...totals.flatMap(item => item.values));
+      const x = index => pad.left + index * ((width - pad.left - pad.right) / Math.max(1, periods.length - 1));
+      const y = value => height - pad.bottom - (value / maxValue) * (height - pad.top - pad.bottom);
+      const gridValues = [0, 0.25, 0.5, 0.75, 1].map(step => Math.round(maxValue * step));
+
+      svg.setAttribute("viewBox", `0 0 ${width} ${height}`);
+      svg.innerHTML = `
+        ${gridValues.map(value => `
+          <line class="chart-grid" x1="${pad.left}" y1="${y(value)}" x2="${width - pad.right}" y2="${y(value)}"></line>
+          <text class="chart-label" x="${pad.left - 10}" y="${y(value) + 4}" text-anchor="end">${value}</text>
+        `).join("")}
+        <line class="chart-axis" x1="${pad.left}" y1="${height - pad.bottom}" x2="${width - pad.right}" y2="${height - pad.bottom}"></line>
+        <line class="chart-axis" x1="${pad.left}" y1="${pad.top}" x2="${pad.left}" y2="${height - pad.bottom}"></line>
+        ${periods.map((period, index) => `
+          <text class="chart-label" x="${x(index)}" y="${height - 20}" text-anchor="middle">${period.label}</text>
+        `).join("")}
+        ${totals.map(series => {
+          const points = series.values.map((value, index) => `${x(index)},${y(value)}`).join(" ");
+          return `
+            <polyline points="${points}" fill="none" stroke="${programColor(series.program)}" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"></polyline>
+            ${series.values.map((value, index) => `
+              <circle cx="${x(index)}" cy="${y(value)}" r="6" fill="${programColor(series.program)}"></circle>
+              <text class="chart-value" x="${x(index)}" y="${y(value) - 10}" text-anchor="middle">${value}</text>
+            `).join("")}
+          `;
+        }).join("")}
+      `;
+
+      legend.innerHTML = totals.map(series => `
+        <span class="legend-item"><span class="legend-swatch" style="background:${programColor(series.program)}"></span>${series.program}</span>
+      `).join("");
+
+    }
+
+    function renderSections() {
+      document.getElementById("sectionsBody").innerHTML = filteredSectionRows().map(item => {
+        const status = statusFor(item);
+        return `
+          <tr>
+            <td data-program="${programShortName(item.program)}"><span class="course-name">${item.course}</span>${item.note ? `<small class="row-note">${item.note}</small>` : ""}</td>
+            <td>${item.section}</td>
+            <td>${item.instructor}</td>
+            <td class="num">${displayValue(item.enrolled)}</td>
+            <td class="num">${displayValue(item.capacity)}</td>
+            <td class="num">${displayAvailable(item)}</td>
+            <td class="num">${displayCapacityPercent(item)}</td>
+            <td>${badge(status)}</td>
+          </tr>
+        `;
+      }).join("") || `
+        <tr>
+          <td colspan="8">No sections match the selected filters.</td>
+        </tr>
+      `;
+    }
+
+    function renderPrograms() {
+      const programs = programNames().filter(program => program !== "All Programs");
+      document.getElementById("programGrid").innerHTML = programs.map(program => {
+        const sections = revenueMetricSections().filter(item => item.program === program);
+        const enrollment = sections.reduce((sum, item) => sum + item.enrolled, 0);
+        const capacity = sections.reduce((sum, item) => sum + item.capacity, 0);
+        const full = sections.filter(item => statusFor(item).className === "full").length;
+        const low = sections.filter(item => statusFor(item).className === "low").length;
+        const pct = capacity > 0 ? Math.round((enrollment / capacity) * 100) : 0;
+        return `
+          <article class="program-card">
+            <h3>${programDisplayName(program)}</h3>
+            <dl>
+              <dt>Sections</dt><dd>${sections.length}</dd>
+              <dt>Enrollment</dt><dd>${enrollment}/${capacity}</dd>
+              <dt>Overall Capacity</dt><dd>${pct}%</dd>
+              <dt>Full Sections</dt><dd>${full}</dd>
+              <dt>Low Sections</dt><dd>${low}</dd>
+            </dl>
+          </article>
+        `;
+      }).join("");
+      document.getElementById("programSummaryNote").innerHTML =
+        "<strong>Cross-listing note:</strong> Each section is counted once under its scheduled program. Courses scheduled by other USC schools are outside this dashboard’s scope.";
+    }
+
+    function renderCourseAssistants() {
+      const rows = dashboardData.courseAssistants || [];
+      document.getElementById("assistantsBody").innerHTML = rows.map(item => `
+        <tr>
+          <td><strong>${item.priority}</strong></td>
+          <td>${item.course}</td>
+          <td>${item.section}</td>
+          <td>${item.instructor}</td>
+          <td class="num">${item.enrollment}</td>
+          <td>${item.need}</td>
+          <td>${item.status}</td>
+          <td>${item.notes}</td>
+        </tr>
+      `).join("") || `
+        <tr>
+          <td colspan="8">No course assistant hiring needs have been added yet.</td>
+        </tr>
+      `;
+    }
+
+    function renderFaculty() {
+      document.getElementById("facultyGrid").innerHTML = dashboardData.facultyNotes.map(item => `
+        <article class="faculty-card">
+          <h3>${item.faculty}</h3>
+          <p>${item.note}</p>
+        </article>
+      `).join("");
+    }
+
+   function renderTermTiming() {
+  const target = document.getElementById("daysUntilClasses");
+  const weekLine = document.getElementById("classWeekLine");
+  if (!target) return;
+  const today = new Date();
+  const start = new Date(2027, 0, 11);
+  today.setHours(0, 0, 0, 0);
+  start.setHours(0, 0, 0, 0);
+  const days = Math.max(0, Math.ceil((start - today) / 86400000));
+  target.textContent = days;
+
+  if (weekLine) {
+    if (today < start) {
+      weekLine.textContent = "";
+    } else {
+      const weekNumber = Math.floor((today - start) / (7 * 86400000)) + 1;
+      weekLine.textContent = `Classes in session: Week ${weekNumber}`;
+    }
+  }
+}
+    function renderTermDates() {
+  const today = new Date();
+  today.setHours(0, 0, 0, 0);
+
+  const dates = [
+    { id: "daysUntilClassesEnd", date: new Date(2027, 3, 30) },
+    { id: "daysUntilStudyDays", date: new Date(2027, 4, 1) },
+    { id: "daysUntilExams", date: new Date(2027, 4, 5) }
+  ];
+
+  dates.forEach(item => {
+    const target = document.getElementById(item.id);
+    if (!target) return;
+    const days = Math.max(0, Math.ceil((item.date - today) / 86400000));
+    target.textContent = days;
+  });
+}
+
+    function renderProgramFilter() {
+      const filter = document.getElementById("programFilter");
+      filter.innerHTML = programNames().map(program => `<option value="${program}">${program}</option>`).join("");
+      filter.value = activeProgram;
+      filter.addEventListener("change", event => {
+        activeProgram = event.target.value;
+        renderKpis();
+        renderLeadershipSummary();
+        renderCapacityCards();
+        renderTrendLog();
+        renderTrendChart();
+        renderSections();
+      });
+    }
+
+    function renderSectionFilters() {
+      const programFilter = document.getElementById("sectionProgramFilter");
+      const statusFilter = document.getElementById("sectionStatusFilter");
+      const searchFilter = document.getElementById("sectionSearchFilter");
+      const resetButton = document.getElementById("sectionFilterReset");
+
+      programFilter.innerHTML = programNames().map(program => `<option value="${program}">${programFilterLabel(program)}</option>`).join("");
+      programFilter.value = sectionFilters.program;
+      statusFilter.value = sectionFilters.status;
+      searchFilter.value = sectionFilters.search;
+
+      programFilter.addEventListener("change", event => {
+        sectionFilters.program = event.target.value;
+        renderSections();
+      });
+
+      statusFilter.addEventListener("change", event => {
+        sectionFilters.status = event.target.value;
+        renderSections();
+      });
+
+      searchFilter.addEventListener("input", event => {
+        sectionFilters.search = event.target.value;
+        renderSections();
+      });
+
+      resetButton.addEventListener("click", () => {
+        sectionFilters = {
+          program: "All Programs",
+          status: "All Statuses",
+          search: ""
+        };
+        programFilter.value = sectionFilters.program;
+        statusFilter.value = sectionFilters.status;
+        searchFilter.value = sectionFilters.search;
+        renderSections();
+      });
+    }
+
+    function sortTable(table, columnIndex) {
+      const tbody = table.querySelector("tbody");
+      const rows = Array.from(tbody.querySelectorAll("tr"));
+      const current = table.dataset.sortColumn === String(columnIndex) ? table.dataset.sortDirection : "desc";
+      const direction = current === "asc" ? "desc" : "asc";
+
+      rows.sort((a, b) => {
+        const aText = a.children[columnIndex].innerText.replace("%", "").replace("+", "").trim();
+        const bText = b.children[columnIndex].innerText.replace("%", "").replace("+", "").trim();
+        const aNum = Number(aText);
+        const bNum = Number(bText);
+        const result = Number.isFinite(aNum) && Number.isFinite(bNum)
+          ? aNum - bNum
+          : aText.localeCompare(bText);
+        return direction === "asc" ? result : -result;
+      });
+
+      table.dataset.sortColumn = String(columnIndex);
+      table.dataset.sortDirection = direction;
+      tbody.innerHTML = "";
+      rows.forEach(row => tbody.appendChild(row));
+    }
+
+    function enableSorting() {
+      document.querySelectorAll("table").forEach(table => {
+        table.querySelectorAll("th").forEach((header, index) => {
+          const label = header.textContent.trim();
+          header.textContent = "";
+          const button = document.createElement("button");
+          button.type = "button";
+          button.className = "sort-button";
+          button.textContent = label;
+          button.setAttribute("aria-label", `Sort by ${label}`);
+          button.addEventListener("click", () => sortTable(table, index));
+          header.appendChild(button);
+        });
+      });
+    }
+
+    function setupBackToTop() {
+      const button = document.getElementById("backToTop");
+      const updateVisibility = () => {
+        button.classList.toggle("visible", window.scrollY > 500);
+      };
+      button.addEventListener("click", () => {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      });
+      window.addEventListener("scroll", updateVisibility, { passive: true });
+      updateVisibility();
+    }
+
+    function init() {
+      document.title = dashboardData.title;
+      document.getElementById("snapshotStatus").textContent = "Updated: " + dashboardData.currentSnapshot;
+      renderKpis();
+      renderLeadershipSummary();
+      renderRevenueView();
+      renderFacilities();
+      renderCapacityCards();
+      renderPrograms();
+      renderTrendLog();
+      renderTrendChart();
+      renderSections();
+      renderCourseAssistants();
+      renderTermTiming();
+      renderTermDates();
+      renderProgramFilter();
+      renderSectionFilters();
+      
+      enableSorting();
+      setupBackToTop();
+    }
+
+    init();
+  </script>
+</body>
+</html>
