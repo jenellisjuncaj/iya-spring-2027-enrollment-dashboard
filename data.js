@@ -1,7 +1,7 @@
 window.dashboardData = {
   "title": "USC Iovine and Young Academy — Spring 2027 Enrollment and Capacity Tracker",
   "termCode": 20271,
-  "currentSnapshot": "11/20/2026, 9:30:18 AM PST",
+  "currentSnapshot": "11/20/2026, 3:33:44 PM PST",
   "baselineSnapshot": "11/19/2026, 11:17:00 AM PST",
   "lowThreshold": 50,
   "nearThreshold": 80,
@@ -698,7 +698,7 @@ window.dashboardData = {
       "course": "IDSN 599 Special Topics",
       "section": "34152",
       "instructor": "Thomas Dadourian",
-      "enrolled": 20,
+      "enrolled": 21,
       "capacity": 28,
       "waitlisted": 0,
       "metrics": true,
@@ -787,7 +787,7 @@ window.dashboardData = {
       "course": "ACAD 174 Innovators Forum",
       "section": "10200",
       "instructor": "Stephen Child, Thomas Dadourian",
-      "enrolled": 69,
+      "enrolled": 68,
       "capacity": 90,
       "waitlisted": 0,
       "metrics": true,
@@ -876,7 +876,7 @@ window.dashboardData = {
       "course": "ACAD 181 Disruptive Innovation",
       "section": "10209",
       "instructor": "Chris Swain",
-      "enrolled": 23,
+      "enrolled": 24,
       "capacity": 50,
       "waitlisted": 0,
       "metrics": true,
@@ -965,7 +965,7 @@ window.dashboardData = {
       "course": "ACAD 207 Narrative Technology and the Human Experience",
       "section": "10223",
       "instructor": "Carsten Becker",
-      "enrolled": 22,
+      "enrolled": 23,
       "capacity": 32,
       "waitlisted": 0,
       "metrics": true,
@@ -1216,7 +1216,7 @@ window.dashboardData = {
       "course": "ACAD 309 Dreams and Madness: The Art of Japan's Golden Age of Animation",
       "section": "10253",
       "instructor": "Doug Thomas",
-      "enrolled": 97,
+      "enrolled": 98,
       "capacity": 160,
       "waitlisted": 0,
       "metrics": true,
@@ -1238,7 +1238,7 @@ window.dashboardData = {
       "course": "ACAD 324 The Practice of Design: Ideation to Innovation",
       "section": "10257",
       "instructor": "Olamiposi Somoye",
-      "enrolled": 13,
+      "enrolled": 14,
       "capacity": 32,
       "waitlisted": 0,
       "metrics": true,
@@ -1391,7 +1391,7 @@ window.dashboardData = {
       "course": "ACAD 432 Collaborative Prototyping in Health Innovation",
       "section": "10279",
       "instructor": "Thanassis Rikakis",
-      "enrolled": 15,
+      "enrolled": 16,
       "capacity": 24,
       "waitlisted": 0,
       "metrics": true,
@@ -1437,7 +1437,7 @@ window.dashboardData = {
       "course": "ACAD 475B The Garage Experience",
       "section": "10287",
       "instructor": "Stephen Child, Thomas Dadourian",
-      "enrolled": 47,
+      "enrolled": 48,
       "capacity": 54,
       "waitlisted": 0,
       "metrics": true,
@@ -1477,6 +1477,62 @@ window.dashboardData = {
     }
   ],
   "trendLog": [
+    {
+      "date": "11/20/2026 PM",
+      "course": "IDSN 599 Special Topics",
+      "section": "34152",
+      "previous": 20,
+      "current": 21
+    },
+    {
+      "date": "11/20/2026 PM",
+      "course": "ACAD 174 Innovators Forum",
+      "section": "10200",
+      "previous": 69,
+      "current": 68
+    },
+    {
+      "date": "11/20/2026 PM",
+      "course": "ACAD 181 Disruptive Innovation",
+      "section": "10209",
+      "previous": 23,
+      "current": 24
+    },
+    {
+      "date": "11/20/2026 PM",
+      "course": "ACAD 207 Narrative Technology and the Human Experience",
+      "section": "10223",
+      "previous": 22,
+      "current": 23
+    },
+    {
+      "date": "11/20/2026 PM",
+      "course": "ACAD 309 Dreams and Madness: The Art of Japan's Golden Age of Animation",
+      "section": "10253",
+      "previous": 97,
+      "current": 98
+    },
+    {
+      "date": "11/20/2026 PM",
+      "course": "ACAD 324 The Practice of Design: Ideation to Innovation",
+      "section": "10257",
+      "previous": 13,
+      "current": 14
+    },
+    {
+      "date": "11/20/2026 PM",
+      "course": "ACAD 432 Collaborative Prototyping in Health Innovation",
+      "section": "10279",
+      "previous": 15,
+      "current": 16
+    },
+    {
+      "date": "11/20/2026 PM",
+      "course": "ACAD 475B The Garage Experience",
+      "section": "10287",
+      "previous": 47,
+      "current": 48
+    },
     {
       "date": "11/20/2026 AM",
       "course": "IDSN 518 Innovation Practicum",
@@ -1746,156 +1802,80 @@ window.dashboardData = {
       "notes": "USC spring refresh. Section additions/removals are recorded separately from seat changes.",
       "sectionsAdded": [],
       "sectionsRemoved": []
+    },
+    {
+      "date": "November 20, 2026",
+      "snapshot": "11/20/2026, 3:33:44 PM PST",
+      "added": 7,
+      "dropped": 1,
+      "totals": {
+        "Undergraduate ACAD": 785,
+        "Graduate IDSN": 610,
+        "Product Innovation (PRIN)": 10
+      },
+      "fullSections": 10,
+      "notes": "USC spring refresh. Section additions/removals are recorded separately from seat changes.",
+      "sectionsAdded": [],
+      "sectionsRemoved": []
     }
   ],
   "netChangeLabel": "Latest refresh vs. previous snapshot",
   "latestChanges": [
     {
-      "date": "11/20/2026 AM",
-      "course": "IDSN 518 Innovation Practicum",
-      "section": "34094",
-      "previous": 8,
-      "current": 9
-    },
-    {
-      "date": "11/20/2026 AM",
-      "course": "IDSN 521 Designing Brand Identity for Startups",
-      "section": "34056",
-      "previous": 14,
-      "current": 15
-    },
-    {
-      "date": "11/20/2026 AM",
-      "course": "IDSN 546 Integrative Studio",
-      "section": "34112",
-      "previous": 12,
-      "current": 13
-    },
-    {
-      "date": "11/20/2026 AM",
-      "course": "IDSN 551 Design Strategy for Innovation",
-      "section": "34101",
-      "previous": 25,
-      "current": 26
-    },
-    {
-      "date": "11/20/2026 AM",
-      "course": "IDSN 567 Materials Science for Product Design",
-      "section": "34146",
-      "previous": 11,
-      "current": 12
-    },
-    {
-      "date": "11/20/2026 AM",
-      "course": "IDSN 598 Future Fashion - Sustainable Systems and Strategies",
-      "section": "34186",
-      "previous": 7,
-      "current": 8
-    },
-    {
-      "date": "11/20/2026 AM",
+      "date": "11/20/2026 PM",
       "course": "IDSN 599 Special Topics",
-      "section": "34102",
-      "previous": 9,
-      "current": 10
-    },
-    {
-      "date": "11/20/2026 AM",
-      "course": "IDSN 599 Special Topics",
-      "section": "34153",
-      "previous": 10,
-      "current": 11
-    },
-    {
-      "date": "11/20/2026 AM",
-      "course": "ACAD 174 Innovators Forum",
-      "section": "10200",
-      "previous": 68,
-      "current": 69
-    },
-    {
-      "date": "11/20/2026 AM",
-      "course": "ACAD 177 Digital Toolbox: Design",
-      "section": "10204",
-      "previous": 9,
-      "current": 7
-    },
-    {
-      "date": "11/20/2026 AM",
-      "course": "ACAD 181 Disruptive Innovation",
-      "section": "10209",
-      "previous": 14,
-      "current": 23
-    },
-    {
-      "date": "11/20/2026 AM",
-      "course": "ACAD 184 Operations Management and Finance for Challenge-Based Innova",
-      "section": "10210",
-      "previous": 22,
-      "current": 23
-    },
-    {
-      "date": "11/20/2026 AM",
-      "course": "ACAD 188 Modeling Products with Solidworks",
-      "section": "10215",
-      "previous": 9,
-      "current": 12
-    },
-    {
-      "date": "11/20/2026 AM",
-      "course": "ACAD 245 Fundamentals of Product Design",
-      "section": "10232",
-      "previous": 15,
-      "current": 17
-    },
-    {
-      "date": "11/20/2026 AM",
-      "course": "ACAD 274 Designing Interactive Data Systems",
-      "section": "10238",
-      "previous": 46,
-      "current": 47
-    },
-    {
-      "date": "11/20/2026 AM",
-      "course": "ACAD 280 Information Design",
-      "section": "10240",
-      "previous": 16,
-      "current": 17
-    },
-    {
-      "date": "11/20/2026 AM",
-      "course": "ACAD 281 Constructing Experiences",
-      "section": "10247",
-      "previous": 33,
-      "current": 32
-    },
-    {
-      "date": "11/20/2026 AM",
-      "course": "ACAD 307 Punk, Counterculture, and the Do-It-Yourself (DIY) Ethos",
-      "section": "10252",
+      "section": "34152",
       "previous": 20,
       "current": 21
     },
     {
-      "date": "11/20/2026 AM",
-      "course": "ACAD 309 Dreams and Madness: The Art of Japan's Golden Age of Animation",
-      "section": "10253",
-      "previous": 98,
-      "current": 97
+      "date": "11/20/2026 PM",
+      "course": "ACAD 174 Innovators Forum",
+      "section": "10200",
+      "previous": 69,
+      "current": 68
     },
     {
-      "date": "11/20/2026 AM",
-      "course": "ACAD 325 Human Technology Interaction and the User Experience",
-      "section": "10258",
-      "previous": 15,
+      "date": "11/20/2026 PM",
+      "course": "ACAD 181 Disruptive Innovation",
+      "section": "10209",
+      "previous": 23,
+      "current": 24
+    },
+    {
+      "date": "11/20/2026 PM",
+      "course": "ACAD 207 Narrative Technology and the Human Experience",
+      "section": "10223",
+      "previous": 22,
+      "current": 23
+    },
+    {
+      "date": "11/20/2026 PM",
+      "course": "ACAD 309 Dreams and Madness: The Art of Japan's Golden Age of Animation",
+      "section": "10253",
+      "previous": 97,
+      "current": 98
+    },
+    {
+      "date": "11/20/2026 PM",
+      "course": "ACAD 324 The Practice of Design: Ideation to Innovation",
+      "section": "10257",
+      "previous": 13,
       "current": 14
     },
     {
-      "date": "11/20/2026 AM",
+      "date": "11/20/2026 PM",
       "course": "ACAD 432 Collaborative Prototyping in Health Innovation",
       "section": "10279",
-      "previous": 14,
-      "current": 15
+      "previous": 15,
+      "current": 16
+    },
+    {
+      "date": "11/20/2026 PM",
+      "course": "ACAD 475B The Garage Experience",
+      "section": "10287",
+      "previous": 47,
+      "current": 48
     }
   ]
 };
