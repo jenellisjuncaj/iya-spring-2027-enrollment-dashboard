@@ -1,7 +1,7 @@
 window.dashboardData = {
   "title": "USC Iovine and Young Academy — Spring 2027 Enrollment and Capacity Tracker",
   "termCode": 20271,
-  "currentSnapshot": "11/20/2026, 3:33:44 PM PST",
+  "currentSnapshot": "11/21/2026, 7:25:06 AM PST",
   "baselineSnapshot": "11/19/2026, 11:17:00 AM PST",
   "lowThreshold": 50,
   "nearThreshold": 80,
@@ -33,7 +33,7 @@ window.dashboardData = {
       "course": "IDSN 515 Professional Practices Residential",
       "section": "34064",
       "instructor": "Yihyun Lim",
-      "enrolled": 29,
+      "enrolled": 30,
       "capacity": 40,
       "waitlisted": 0,
       "metrics": true,
@@ -53,7 +53,7 @@ window.dashboardData = {
       "course": "IDSN 518 Innovation Practicum",
       "section": "34094",
       "instructor": "Patrick Dent",
-      "enrolled": 9,
+      "enrolled": 10,
       "capacity": 20,
       "waitlisted": 0,
       "metrics": true,
@@ -95,7 +95,7 @@ window.dashboardData = {
       "course": "IDSN 522 Inclusive Design and Design Allyship",
       "section": "34076",
       "instructor": "Davina Wolter",
-      "enrolled": 17,
+      "enrolled": 18,
       "capacity": 30,
       "waitlisted": 0,
       "metrics": true,
@@ -161,7 +161,7 @@ window.dashboardData = {
       "course": "IDSN 524 Physical Product Design",
       "section": "34067",
       "instructor": "Safir Bellali",
-      "enrolled": 9,
+      "enrolled": 10,
       "capacity": 40,
       "waitlisted": 0,
       "metrics": true,
@@ -183,7 +183,7 @@ window.dashboardData = {
       "course": "IDSN 528 Using Intellectual Property Laws to Protect Your Products and Ideas                              ",
       "section": "34086",
       "instructor": "TBD",
-      "enrolled": 12,
+      "enrolled": 13,
       "capacity": 25,
       "waitlisted": 0,
       "metrics": true,
@@ -274,7 +274,7 @@ window.dashboardData = {
       "course": "IDSN 539 Extended Reality Development",
       "section": "34110",
       "instructor": "John Bruneau",
-      "enrolled": 11,
+      "enrolled": 12,
       "capacity": 24,
       "waitlisted": 0,
       "metrics": true,
@@ -288,6 +288,52 @@ window.dashboardData = {
           ],
           "startTime": "16:00",
           "endTime": "17:50",
+          "sectionLocationSqNumber": 1
+        }
+      ]
+    },
+    {
+      "program": "Graduate IDSN",
+      "course": "IDSN 542 Introduction to Machine Intelligence",
+      "section": "34197",
+      "instructor": "Thanassis Rikakis",
+      "enrolled": 0,
+      "capacity": 30,
+      "waitlisted": 0,
+      "metrics": true,
+      "note": "",
+      "meetings": [
+        {
+          "dayCode": "MW",
+          "days": [
+            "Mon",
+            "Wed"
+          ],
+          "startTime": "10:00",
+          "endTime": "11:50",
+          "sectionLocationSqNumber": 1
+        }
+      ]
+    },
+    {
+      "program": "Graduate IDSN",
+      "course": "IDSN 542 Introduction to Machine Intelligence",
+      "section": "34199",
+      "instructor": "Thanassis Rikakis",
+      "enrolled": 0,
+      "capacity": 25,
+      "waitlisted": 0,
+      "metrics": true,
+      "note": "",
+      "meetings": [
+        {
+          "dayCode": "MW",
+          "days": [
+            "Mon",
+            "Wed"
+          ],
+          "startTime": "10:00",
+          "endTime": "11:50",
           "sectionLocationSqNumber": 1
         }
       ]
@@ -365,7 +411,7 @@ window.dashboardData = {
       "course": "IDSN 546 Integrative Studio",
       "section": "34112",
       "instructor": "Yihyun Lim",
-      "enrolled": 13,
+      "enrolled": 14,
       "capacity": 30,
       "waitlisted": 0,
       "metrics": true,
@@ -409,7 +455,7 @@ window.dashboardData = {
       "course": "IDSN 551 Design Strategy for Innovation",
       "section": "34101",
       "instructor": "Yihyun Lim",
-      "enrolled": 26,
+      "enrolled": 25,
       "capacity": 35,
       "waitlisted": 0,
       "metrics": true,
@@ -698,7 +744,7 @@ window.dashboardData = {
       "course": "IDSN 599 Special Topics",
       "section": "34152",
       "instructor": "Thomas Dadourian",
-      "enrolled": 21,
+      "enrolled": 22,
       "capacity": 28,
       "waitlisted": 0,
       "metrics": true,
@@ -876,7 +922,7 @@ window.dashboardData = {
       "course": "ACAD 181 Disruptive Innovation",
       "section": "10209",
       "instructor": "Chris Swain",
-      "enrolled": 24,
+      "enrolled": 26,
       "capacity": 50,
       "waitlisted": 0,
       "metrics": true,
@@ -943,7 +989,7 @@ window.dashboardData = {
       "course": "ACAD 188 Modeling Products with Solidworks",
       "section": "10215",
       "instructor": "Kia McCormick",
-      "enrolled": 12,
+      "enrolled": 13,
       "capacity": 32,
       "waitlisted": 0,
       "metrics": true,
@@ -1307,7 +1353,7 @@ window.dashboardData = {
       "course": "ACAD 406 Purpose-Driven Innovation Incubator",
       "section": "10256",
       "instructor": "Chris Swain",
-      "enrolled": 19,
+      "enrolled": 20,
       "capacity": 40,
       "waitlisted": 0,
       "metrics": true,
@@ -1477,6 +1523,90 @@ window.dashboardData = {
     }
   ],
   "trendLog": [
+    {
+      "date": "11/21/2026 AM",
+      "course": "IDSN 515 Professional Practices Residential",
+      "section": "34064",
+      "previous": 29,
+      "current": 30
+    },
+    {
+      "date": "11/21/2026 AM",
+      "course": "IDSN 518 Innovation Practicum",
+      "section": "34094",
+      "previous": 9,
+      "current": 10
+    },
+    {
+      "date": "11/21/2026 AM",
+      "course": "IDSN 522 Inclusive Design and Design Allyship",
+      "section": "34076",
+      "previous": 17,
+      "current": 18
+    },
+    {
+      "date": "11/21/2026 AM",
+      "course": "IDSN 524 Physical Product Design",
+      "section": "34067",
+      "previous": 9,
+      "current": 10
+    },
+    {
+      "date": "11/21/2026 AM",
+      "course": "IDSN 528 Using Intellectual Property Laws to Protect Your Products and Ideas                              ",
+      "section": "34086",
+      "previous": 12,
+      "current": 13
+    },
+    {
+      "date": "11/21/2026 AM",
+      "course": "IDSN 539 Extended Reality Development",
+      "section": "34110",
+      "previous": 11,
+      "current": 12
+    },
+    {
+      "date": "11/21/2026 AM",
+      "course": "IDSN 546 Integrative Studio",
+      "section": "34112",
+      "previous": 13,
+      "current": 14
+    },
+    {
+      "date": "11/21/2026 AM",
+      "course": "IDSN 551 Design Strategy for Innovation",
+      "section": "34101",
+      "previous": 26,
+      "current": 25
+    },
+    {
+      "date": "11/21/2026 AM",
+      "course": "IDSN 599 Special Topics",
+      "section": "34152",
+      "previous": 21,
+      "current": 22
+    },
+    {
+      "date": "11/21/2026 AM",
+      "course": "ACAD 181 Disruptive Innovation",
+      "section": "10209",
+      "previous": 24,
+      "current": 26
+    },
+    {
+      "date": "11/21/2026 AM",
+      "course": "ACAD 188 Modeling Products with Solidworks",
+      "section": "10215",
+      "previous": 12,
+      "current": 13
+    },
+    {
+      "date": "11/21/2026 AM",
+      "course": "ACAD 406 Purpose-Driven Innovation Incubator",
+      "section": "10256",
+      "previous": 19,
+      "current": 20
+    },
     {
       "date": "11/20/2026 PM",
       "course": "IDSN 599 Special Topics",
@@ -1817,65 +1947,111 @@ window.dashboardData = {
       "notes": "USC spring refresh. Section additions/removals are recorded separately from seat changes.",
       "sectionsAdded": [],
       "sectionsRemoved": []
+    },
+    {
+      "date": "November 21, 2026",
+      "snapshot": "11/21/2026, 7:25:06 AM PST",
+      "added": 12,
+      "dropped": 1,
+      "totals": {
+        "Undergraduate ACAD": 789,
+        "Graduate IDSN": 617,
+        "Product Innovation (PRIN)": 10
+      },
+      "fullSections": 10,
+      "notes": "USC spring refresh. Section additions/removals are recorded separately from seat changes.",
+      "sectionsAdded": [
+        "34197",
+        "34199"
+      ],
+      "sectionsRemoved": []
     }
   ],
   "netChangeLabel": "Latest refresh vs. previous snapshot",
   "latestChanges": [
     {
-      "date": "11/20/2026 PM",
-      "course": "IDSN 599 Special Topics",
-      "section": "34152",
-      "previous": 20,
-      "current": 21
+      "date": "11/21/2026 AM",
+      "course": "IDSN 515 Professional Practices Residential",
+      "section": "34064",
+      "previous": 29,
+      "current": 30
     },
     {
-      "date": "11/20/2026 PM",
-      "course": "ACAD 174 Innovators Forum",
-      "section": "10200",
-      "previous": 69,
-      "current": 68
+      "date": "11/21/2026 AM",
+      "course": "IDSN 518 Innovation Practicum",
+      "section": "34094",
+      "previous": 9,
+      "current": 10
     },
     {
-      "date": "11/20/2026 PM",
-      "course": "ACAD 181 Disruptive Innovation",
-      "section": "10209",
-      "previous": 23,
-      "current": 24
+      "date": "11/21/2026 AM",
+      "course": "IDSN 522 Inclusive Design and Design Allyship",
+      "section": "34076",
+      "previous": 17,
+      "current": 18
     },
     {
-      "date": "11/20/2026 PM",
-      "course": "ACAD 207 Narrative Technology and the Human Experience",
-      "section": "10223",
-      "previous": 22,
-      "current": 23
+      "date": "11/21/2026 AM",
+      "course": "IDSN 524 Physical Product Design",
+      "section": "34067",
+      "previous": 9,
+      "current": 10
     },
     {
-      "date": "11/20/2026 PM",
-      "course": "ACAD 309 Dreams and Madness: The Art of Japan's Golden Age of Animation",
-      "section": "10253",
-      "previous": 97,
-      "current": 98
+      "date": "11/21/2026 AM",
+      "course": "IDSN 528 Using Intellectual Property Laws to Protect Your Products and Ideas                              ",
+      "section": "34086",
+      "previous": 12,
+      "current": 13
     },
     {
-      "date": "11/20/2026 PM",
-      "course": "ACAD 324 The Practice of Design: Ideation to Innovation",
-      "section": "10257",
+      "date": "11/21/2026 AM",
+      "course": "IDSN 539 Extended Reality Development",
+      "section": "34110",
+      "previous": 11,
+      "current": 12
+    },
+    {
+      "date": "11/21/2026 AM",
+      "course": "IDSN 546 Integrative Studio",
+      "section": "34112",
       "previous": 13,
       "current": 14
     },
     {
-      "date": "11/20/2026 PM",
-      "course": "ACAD 432 Collaborative Prototyping in Health Innovation",
-      "section": "10279",
-      "previous": 15,
-      "current": 16
+      "date": "11/21/2026 AM",
+      "course": "IDSN 551 Design Strategy for Innovation",
+      "section": "34101",
+      "previous": 26,
+      "current": 25
     },
     {
-      "date": "11/20/2026 PM",
-      "course": "ACAD 475B The Garage Experience",
-      "section": "10287",
-      "previous": 47,
-      "current": 48
+      "date": "11/21/2026 AM",
+      "course": "IDSN 599 Special Topics",
+      "section": "34152",
+      "previous": 21,
+      "current": 22
+    },
+    {
+      "date": "11/21/2026 AM",
+      "course": "ACAD 181 Disruptive Innovation",
+      "section": "10209",
+      "previous": 24,
+      "current": 26
+    },
+    {
+      "date": "11/21/2026 AM",
+      "course": "ACAD 188 Modeling Products with Solidworks",
+      "section": "10215",
+      "previous": 12,
+      "current": 13
+    },
+    {
+      "date": "11/21/2026 AM",
+      "course": "ACAD 406 Purpose-Driven Innovation Incubator",
+      "section": "10256",
+      "previous": 19,
+      "current": 20
     }
   ]
 };
@@ -1940,7 +2116,9 @@ window.sectionCredits = {
   "34185": 4,
   "34186": 4,
   "34188": 3,
+  "34197": 4,
   "34198": 4,
+  "34199": 4,
   "34783": 2,
   "34899": 4
 };
