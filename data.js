@@ -1,7 +1,7 @@
 window.dashboardData = {
   "title": "USC Iovine and Young Academy — Spring 2027 Enrollment and Capacity Tracker",
   "termCode": 20271,
-  "currentSnapshot": "11/21/2026, 7:25:06 AM PST",
+  "currentSnapshot": "11/23/2026, 11:06:40 AM PST",
   "baselineSnapshot": "11/19/2026, 11:17:00 AM PST",
   "lowThreshold": 50,
   "nearThreshold": 80,
@@ -139,7 +139,7 @@ window.dashboardData = {
       "course": "IDSN 523 Product Design for User Experience",
       "section": "34077",
       "instructor": "Chris Swain",
-      "enrolled": 34,
+      "enrolled": 35,
       "capacity": 40,
       "waitlisted": 0,
       "metrics": true,
@@ -297,7 +297,7 @@ window.dashboardData = {
       "course": "IDSN 542 Introduction to Machine Intelligence",
       "section": "34197",
       "instructor": "Thanassis Rikakis",
-      "enrolled": 0,
+      "enrolled": 1,
       "capacity": 30,
       "waitlisted": 0,
       "metrics": true,
@@ -343,7 +343,7 @@ window.dashboardData = {
       "course": "IDSN 543 Augmented Intelligence",
       "section": "34198",
       "instructor": "Tamim Ahmed",
-      "enrolled": 23,
+      "enrolled": 22,
       "capacity": 32,
       "waitlisted": 0,
       "metrics": true,
@@ -699,7 +699,7 @@ window.dashboardData = {
       "course": "IDSN 599 Special Topics",
       "section": "34102",
       "instructor": "SeoYoon Sung",
-      "enrolled": 10,
+      "enrolled": 9,
       "capacity": 40,
       "waitlisted": 0,
       "metrics": true,
@@ -744,7 +744,7 @@ window.dashboardData = {
       "course": "IDSN 599 Special Topics",
       "section": "34152",
       "instructor": "Thomas Dadourian",
-      "enrolled": 22,
+      "enrolled": 21,
       "capacity": 28,
       "waitlisted": 0,
       "metrics": true,
@@ -766,7 +766,7 @@ window.dashboardData = {
       "course": "IDSN 599 Special Topics",
       "section": "34153",
       "instructor": "Michael Kanazawa",
-      "enrolled": 11,
+      "enrolled": 12,
       "capacity": 30,
       "waitlisted": 0,
       "metrics": true,
@@ -855,7 +855,7 @@ window.dashboardData = {
       "course": "ACAD 176 Rapid Visualization",
       "section": "10201",
       "instructor": "Kia McCormick",
-      "enrolled": 20,
+      "enrolled": 19,
       "capacity": 32,
       "waitlisted": 0,
       "metrics": true,
@@ -922,7 +922,7 @@ window.dashboardData = {
       "course": "ACAD 181 Disruptive Innovation",
       "section": "10209",
       "instructor": "Chris Swain",
-      "enrolled": 26,
+      "enrolled": 35,
       "capacity": 50,
       "waitlisted": 0,
       "metrics": true,
@@ -1126,7 +1126,7 @@ window.dashboardData = {
       "course": "ACAD 260 Introduction to Healthcare Innovation",
       "section": "10235",
       "instructor": "Armine Lulejian",
-      "enrolled": 28,
+      "enrolled": 27,
       "capacity": 32,
       "waitlisted": 0,
       "metrics": true,
@@ -1171,7 +1171,7 @@ window.dashboardData = {
       "course": "ACAD 280 Information Design",
       "section": "10240",
       "instructor": "Aaron Siegel",
-      "enrolled": 17,
+      "enrolled": 18,
       "capacity": 24,
       "waitlisted": 0,
       "metrics": true,
@@ -1194,7 +1194,7 @@ window.dashboardData = {
       "course": "ACAD 281 Constructing Experiences",
       "section": "10247",
       "instructor": "Davina Wolter",
-      "enrolled": 32,
+      "enrolled": 33,
       "capacity": 64,
       "waitlisted": 0,
       "metrics": true,
@@ -1240,7 +1240,7 @@ window.dashboardData = {
       "course": "ACAD 307 Punk, Counterculture, and the Do-It-Yourself (DIY) Ethos",
       "section": "10252",
       "instructor": "Keanan Duffty",
-      "enrolled": 21,
+      "enrolled": 22,
       "capacity": 93,
       "waitlisted": 0,
       "metrics": true,
@@ -1262,7 +1262,7 @@ window.dashboardData = {
       "course": "ACAD 309 Dreams and Madness: The Art of Japan's Golden Age of Animation",
       "section": "10253",
       "instructor": "Doug Thomas",
-      "enrolled": 98,
+      "enrolled": 97,
       "capacity": 160,
       "waitlisted": 0,
       "metrics": true,
@@ -1330,7 +1330,7 @@ window.dashboardData = {
       "course": "ACAD 360 Design Strategy: Problem Solving for Organizations",
       "section": "10265",
       "instructor": "Matthew Manos",
-      "enrolled": 68,
+      "enrolled": 69,
       "capacity": 90,
       "waitlisted": 0,
       "metrics": true,
@@ -1375,7 +1375,7 @@ window.dashboardData = {
       "course": "ACAD 406 Purpose-Driven Innovation Incubator",
       "section": "10259",
       "instructor": "Chris Swain",
-      "enrolled": 11,
+      "enrolled": 12,
       "capacity": 25,
       "waitlisted": 0,
       "metrics": true,
@@ -1437,7 +1437,7 @@ window.dashboardData = {
       "course": "ACAD 432 Collaborative Prototyping in Health Innovation",
       "section": "10279",
       "instructor": "Thanassis Rikakis",
-      "enrolled": 16,
+      "enrolled": 17,
       "capacity": 24,
       "waitlisted": 0,
       "metrics": true,
@@ -1523,6 +1523,118 @@ window.dashboardData = {
     }
   ],
   "trendLog": [
+    {
+      "date": "11/23/2026 AM",
+      "course": "IDSN 523 Product Design for User Experience",
+      "section": "34077",
+      "previous": 34,
+      "current": 35
+    },
+    {
+      "date": "11/23/2026 AM",
+      "course": "IDSN 542 Introduction to Machine Intelligence",
+      "section": "34197",
+      "previous": 0,
+      "current": 1
+    },
+    {
+      "date": "11/23/2026 AM",
+      "course": "IDSN 543 Augmented Intelligence",
+      "section": "34198",
+      "previous": 23,
+      "current": 22
+    },
+    {
+      "date": "11/23/2026 AM",
+      "course": "IDSN 599 Special Topics",
+      "section": "34102",
+      "previous": 10,
+      "current": 9
+    },
+    {
+      "date": "11/23/2026 AM",
+      "course": "IDSN 599 Special Topics",
+      "section": "34152",
+      "previous": 22,
+      "current": 21
+    },
+    {
+      "date": "11/23/2026 AM",
+      "course": "IDSN 599 Special Topics",
+      "section": "34153",
+      "previous": 11,
+      "current": 12
+    },
+    {
+      "date": "11/23/2026 AM",
+      "course": "ACAD 176 Rapid Visualization",
+      "section": "10201",
+      "previous": 20,
+      "current": 19
+    },
+    {
+      "date": "11/23/2026 AM",
+      "course": "ACAD 181 Disruptive Innovation",
+      "section": "10209",
+      "previous": 26,
+      "current": 35
+    },
+    {
+      "date": "11/23/2026 AM",
+      "course": "ACAD 260 Introduction to Healthcare Innovation",
+      "section": "10235",
+      "previous": 28,
+      "current": 27
+    },
+    {
+      "date": "11/23/2026 AM",
+      "course": "ACAD 280 Information Design",
+      "section": "10240",
+      "previous": 17,
+      "current": 18
+    },
+    {
+      "date": "11/23/2026 AM",
+      "course": "ACAD 281 Constructing Experiences",
+      "section": "10247",
+      "previous": 32,
+      "current": 33
+    },
+    {
+      "date": "11/23/2026 AM",
+      "course": "ACAD 307 Punk, Counterculture, and the Do-It-Yourself (DIY) Ethos",
+      "section": "10252",
+      "previous": 21,
+      "current": 22
+    },
+    {
+      "date": "11/23/2026 AM",
+      "course": "ACAD 309 Dreams and Madness: The Art of Japan's Golden Age of Animation",
+      "section": "10253",
+      "previous": 98,
+      "current": 97
+    },
+    {
+      "date": "11/23/2026 AM",
+      "course": "ACAD 360 Design Strategy: Problem Solving for Organizations",
+      "section": "10265",
+      "previous": 68,
+      "current": 69
+    },
+    {
+      "date": "11/23/2026 AM",
+      "course": "ACAD 406 Purpose-Driven Innovation Incubator",
+      "section": "10259",
+      "previous": 11,
+      "current": 12
+    },
+    {
+      "date": "11/23/2026 AM",
+      "course": "ACAD 432 Collaborative Prototyping in Health Innovation",
+      "section": "10279",
+      "previous": 16,
+      "current": 17
+    },
     {
       "date": "11/21/2026 AM",
       "course": "IDSN 515 Professional Practices Residential",
@@ -1965,93 +2077,136 @@ window.dashboardData = {
         "34199"
       ],
       "sectionsRemoved": []
+    },
+    {
+      "date": "November 23, 2026",
+      "snapshot": "11/23/2026, 11:06:40 AM PST",
+      "added": 18,
+      "dropped": 6,
+      "totals": {
+        "Undergraduate ACAD": 801,
+        "Graduate IDSN": 617,
+        "Product Innovation (PRIN)": 10
+      },
+      "fullSections": 10,
+      "notes": "USC spring refresh. Section additions/removals are recorded separately from seat changes.",
+      "sectionsAdded": [],
+      "sectionsRemoved": []
     }
   ],
   "netChangeLabel": "Latest refresh vs. previous snapshot",
   "latestChanges": [
     {
-      "date": "11/21/2026 AM",
-      "course": "IDSN 515 Professional Practices Residential",
-      "section": "34064",
-      "previous": 29,
-      "current": 30
+      "date": "11/23/2026 AM",
+      "course": "IDSN 523 Product Design for User Experience",
+      "section": "34077",
+      "previous": 34,
+      "current": 35
     },
     {
-      "date": "11/21/2026 AM",
-      "course": "IDSN 518 Innovation Practicum",
-      "section": "34094",
-      "previous": 9,
-      "current": 10
+      "date": "11/23/2026 AM",
+      "course": "IDSN 542 Introduction to Machine Intelligence",
+      "section": "34197",
+      "previous": 0,
+      "current": 1
     },
     {
-      "date": "11/21/2026 AM",
-      "course": "IDSN 522 Inclusive Design and Design Allyship",
-      "section": "34076",
-      "previous": 17,
-      "current": 18
+      "date": "11/23/2026 AM",
+      "course": "IDSN 543 Augmented Intelligence",
+      "section": "34198",
+      "previous": 23,
+      "current": 22
     },
     {
-      "date": "11/21/2026 AM",
-      "course": "IDSN 524 Physical Product Design",
-      "section": "34067",
-      "previous": 9,
-      "current": 10
+      "date": "11/23/2026 AM",
+      "course": "IDSN 599 Special Topics",
+      "section": "34102",
+      "previous": 10,
+      "current": 9
     },
     {
-      "date": "11/21/2026 AM",
-      "course": "IDSN 528 Using Intellectual Property Laws to Protect Your Products and Ideas                              ",
-      "section": "34086",
-      "previous": 12,
-      "current": 13
+      "date": "11/23/2026 AM",
+      "course": "IDSN 599 Special Topics",
+      "section": "34152",
+      "previous": 22,
+      "current": 21
     },
     {
-      "date": "11/21/2026 AM",
-      "course": "IDSN 539 Extended Reality Development",
-      "section": "34110",
+      "date": "11/23/2026 AM",
+      "course": "IDSN 599 Special Topics",
+      "section": "34153",
       "previous": 11,
       "current": 12
     },
     {
-      "date": "11/21/2026 AM",
-      "course": "IDSN 546 Integrative Studio",
-      "section": "34112",
-      "previous": 13,
-      "current": 14
+      "date": "11/23/2026 AM",
+      "course": "ACAD 176 Rapid Visualization",
+      "section": "10201",
+      "previous": 20,
+      "current": 19
     },
     {
-      "date": "11/21/2026 AM",
-      "course": "IDSN 551 Design Strategy for Innovation",
-      "section": "34101",
+      "date": "11/23/2026 AM",
+      "course": "ACAD 181 Disruptive Innovation",
+      "section": "10209",
       "previous": 26,
-      "current": 25
+      "current": 35
     },
     {
-      "date": "11/21/2026 AM",
-      "course": "IDSN 599 Special Topics",
-      "section": "34152",
+      "date": "11/23/2026 AM",
+      "course": "ACAD 260 Introduction to Healthcare Innovation",
+      "section": "10235",
+      "previous": 28,
+      "current": 27
+    },
+    {
+      "date": "11/23/2026 AM",
+      "course": "ACAD 280 Information Design",
+      "section": "10240",
+      "previous": 17,
+      "current": 18
+    },
+    {
+      "date": "11/23/2026 AM",
+      "course": "ACAD 281 Constructing Experiences",
+      "section": "10247",
+      "previous": 32,
+      "current": 33
+    },
+    {
+      "date": "11/23/2026 AM",
+      "course": "ACAD 307 Punk, Counterculture, and the Do-It-Yourself (DIY) Ethos",
+      "section": "10252",
       "previous": 21,
       "current": 22
     },
     {
-      "date": "11/21/2026 AM",
-      "course": "ACAD 181 Disruptive Innovation",
-      "section": "10209",
-      "previous": 24,
-      "current": 26
+      "date": "11/23/2026 AM",
+      "course": "ACAD 309 Dreams and Madness: The Art of Japan's Golden Age of Animation",
+      "section": "10253",
+      "previous": 98,
+      "current": 97
     },
     {
-      "date": "11/21/2026 AM",
-      "course": "ACAD 188 Modeling Products with Solidworks",
-      "section": "10215",
-      "previous": 12,
-      "current": 13
+      "date": "11/23/2026 AM",
+      "course": "ACAD 360 Design Strategy: Problem Solving for Organizations",
+      "section": "10265",
+      "previous": 68,
+      "current": 69
     },
     {
-      "date": "11/21/2026 AM",
+      "date": "11/23/2026 AM",
       "course": "ACAD 406 Purpose-Driven Innovation Incubator",
-      "section": "10256",
-      "previous": 19,
-      "current": 20
+      "section": "10259",
+      "previous": 11,
+      "current": 12
+    },
+    {
+      "date": "11/23/2026 AM",
+      "course": "ACAD 432 Collaborative Prototyping in Health Innovation",
+      "section": "10279",
+      "previous": 16,
+      "current": 17
     }
   ]
 };
