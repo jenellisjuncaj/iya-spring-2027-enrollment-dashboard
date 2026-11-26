@@ -1,7 +1,7 @@
 window.dashboardData = {
   "title": "USC Iovine and Young Academy — Spring 2027 Enrollment and Capacity Tracker",
   "termCode": 20271,
-  "currentSnapshot": "11/26/2026, 12:27:54 PM PST",
+  "currentSnapshot": "11/26/2026, 12:28:04 PM PST",
   "baselineSnapshot": "11/19/2026, 11:17:00 AM PST",
   "lowThreshold": 50,
   "nearThreshold": 80,
@@ -2291,25 +2291,25 @@ window.dashboardData = {
       "notes": "USC spring refresh. Section additions/removals are recorded separately from seat changes.",
       "sectionsAdded": [],
       "sectionsRemoved": []
+    },
+    {
+      "date": "November 26, 2026",
+      "snapshot": "11/26/2026, 12:28:04 PM PST",
+      "added": 0,
+      "dropped": 0,
+      "totals": {
+        "Undergraduate ACAD": 817,
+        "Graduate IDSN": 620,
+        "Product Innovation (PRIN)": 10
+      },
+      "fullSections": 9,
+      "notes": "USC spring refresh. Section additions/removals are recorded separately from seat changes.",
+      "sectionsAdded": [],
+      "sectionsRemoved": []
     }
   ],
   "netChangeLabel": "Latest refresh vs. previous snapshot",
-  "latestChanges": [
-    {
-      "date": "11/26/2026 PM",
-      "course": "IDSN 539 Extended Reality Development",
-      "section": "34110",
-      "previous": 12,
-      "current": 13
-    },
-    {
-      "date": "11/26/2026 PM",
-      "course": "IDSN 560 Narratives and Interactive Storytelling",
-      "section": "34142",
-      "previous": 35,
-      "current": 34
-    }
-  ]
+  "latestChanges": []
 };
 window.sectionCredits = {
   "10200": 2,
