@@ -1,7 +1,7 @@
 window.dashboardData = {
   "title": "USC Iovine and Young Academy — Spring 2027 Enrollment and Capacity Tracker",
   "termCode": 20271,
-  "currentSnapshot": "11/25/2026, 4:51:56 PM PST",
+  "currentSnapshot": "11/26/2026, 12:27:54 PM PST",
   "baselineSnapshot": "11/19/2026, 11:17:00 AM PST",
   "lowThreshold": 50,
   "nearThreshold": 80,
@@ -274,7 +274,7 @@ window.dashboardData = {
       "course": "IDSN 539 Extended Reality Development",
       "section": "34110",
       "instructor": "John Bruneau",
-      "enrolled": 12,
+      "enrolled": 13,
       "capacity": 24,
       "waitlisted": 0,
       "metrics": true,
@@ -454,7 +454,7 @@ window.dashboardData = {
       "course": "IDSN 560 Narratives and Interactive Storytelling",
       "section": "34142",
       "instructor": "Yihyun Lim",
-      "enrolled": 35,
+      "enrolled": 34,
       "capacity": 36,
       "waitlisted": 0,
       "metrics": true,
@@ -1501,6 +1501,20 @@ window.dashboardData = {
   ],
   "trendLog": [
     {
+      "date": "11/26/2026 PM",
+      "course": "IDSN 539 Extended Reality Development",
+      "section": "34110",
+      "previous": 12,
+      "current": 13
+    },
+    {
+      "date": "11/26/2026 PM",
+      "course": "IDSN 560 Narratives and Interactive Storytelling",
+      "section": "34142",
+      "previous": 35,
+      "current": 34
+    },
+    {
       "date": "11/25/2026 PM",
       "course": "IDSN 542 Introduction to Machine Intelligence",
       "section": "34197",
@@ -2262,44 +2276,38 @@ window.dashboardData = {
       "notes": "USC spring refresh. Section additions/removals are recorded separately from seat changes.",
       "sectionsAdded": [],
       "sectionsRemoved": []
+    },
+    {
+      "date": "November 26, 2026",
+      "snapshot": "11/26/2026, 12:27:54 PM PST",
+      "added": 1,
+      "dropped": 1,
+      "totals": {
+        "Undergraduate ACAD": 817,
+        "Graduate IDSN": 620,
+        "Product Innovation (PRIN)": 10
+      },
+      "fullSections": 9,
+      "notes": "USC spring refresh. Section additions/removals are recorded separately from seat changes.",
+      "sectionsAdded": [],
+      "sectionsRemoved": []
     }
   ],
   "netChangeLabel": "Latest refresh vs. previous snapshot",
   "latestChanges": [
     {
-      "date": "11/25/2026 PM",
-      "course": "IDSN 542 Introduction to Machine Intelligence",
-      "section": "34197",
-      "previous": 2,
-      "current": 3
+      "date": "11/26/2026 PM",
+      "course": "IDSN 539 Extended Reality Development",
+      "section": "34110",
+      "previous": 12,
+      "current": 13
     },
     {
-      "date": "11/25/2026 PM",
-      "course": "IDSN 546 Integrative Studio",
-      "section": "34112",
-      "previous": 14,
-      "current": 15
-    },
-    {
-      "date": "11/25/2026 PM",
-      "course": "IDSN 599 Special Topics",
-      "section": "34090",
-      "previous": 31,
-      "current": 32
-    },
-    {
-      "date": "11/25/2026 PM",
-      "course": "ACAD 181 Disruptive Innovation",
-      "section": "10209",
-      "previous": 39,
-      "current": 41
-    },
-    {
-      "date": "11/25/2026 PM",
-      "course": "ACAD 222 Introduction to Machine Intelligence",
-      "section": "10230",
-      "previous": 10,
-      "current": 11
+      "date": "11/26/2026 PM",
+      "course": "IDSN 560 Narratives and Interactive Storytelling",
+      "section": "34142",
+      "previous": 35,
+      "current": 34
     }
   ]
 };
