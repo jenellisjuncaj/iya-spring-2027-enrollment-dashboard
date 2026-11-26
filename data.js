@@ -1,7 +1,7 @@
 window.dashboardData = {
   "title": "USC Iovine and Young Academy — Spring 2027 Enrollment and Capacity Tracker",
   "termCode": 20271,
-  "currentSnapshot": "11/24/2026, 7:38:51 PM PST",
+  "currentSnapshot": "11/25/2026, 4:51:56 PM PST",
   "baselineSnapshot": "11/19/2026, 11:17:00 AM PST",
   "lowThreshold": 50,
   "nearThreshold": 80,
@@ -297,7 +297,7 @@ window.dashboardData = {
       "course": "IDSN 542 Introduction to Machine Intelligence",
       "section": "34197",
       "instructor": "Thanassis Rikakis",
-      "enrolled": 2,
+      "enrolled": 3,
       "capacity": 30,
       "waitlisted": 0,
       "metrics": true,
@@ -388,7 +388,7 @@ window.dashboardData = {
       "course": "IDSN 546 Integrative Studio",
       "section": "34112",
       "instructor": "Yihyun Lim",
-      "enrolled": 14,
+      "enrolled": 15,
       "capacity": 30,
       "waitlisted": 0,
       "metrics": true,
@@ -654,7 +654,7 @@ window.dashboardData = {
       "course": "IDSN 599 Special Topics",
       "section": "34090",
       "instructor": "Doug Thomas",
-      "enrolled": 31,
+      "enrolled": 32,
       "capacity": 32,
       "waitlisted": 0,
       "metrics": true,
@@ -899,7 +899,7 @@ window.dashboardData = {
       "course": "ACAD 181 Disruptive Innovation",
       "section": "10209",
       "instructor": "Chris Swain",
-      "enrolled": 39,
+      "enrolled": 41,
       "capacity": 50,
       "waitlisted": 0,
       "metrics": true,
@@ -1011,7 +1011,7 @@ window.dashboardData = {
       "course": "ACAD 222 Introduction to Machine Intelligence",
       "section": "10230",
       "instructor": "Thanassis Rikakis",
-      "enrolled": 10,
+      "enrolled": 11,
       "capacity": 24,
       "waitlisted": 0,
       "metrics": true,
@@ -1500,6 +1500,41 @@ window.dashboardData = {
     }
   ],
   "trendLog": [
+    {
+      "date": "11/25/2026 PM",
+      "course": "IDSN 542 Introduction to Machine Intelligence",
+      "section": "34197",
+      "previous": 2,
+      "current": 3
+    },
+    {
+      "date": "11/25/2026 PM",
+      "course": "IDSN 546 Integrative Studio",
+      "section": "34112",
+      "previous": 14,
+      "current": 15
+    },
+    {
+      "date": "11/25/2026 PM",
+      "course": "IDSN 599 Special Topics",
+      "section": "34090",
+      "previous": 31,
+      "current": 32
+    },
+    {
+      "date": "11/25/2026 PM",
+      "course": "ACAD 181 Disruptive Innovation",
+      "section": "10209",
+      "previous": 39,
+      "current": 41
+    },
+    {
+      "date": "11/25/2026 PM",
+      "course": "ACAD 222 Introduction to Machine Intelligence",
+      "section": "10230",
+      "previous": 10,
+      "current": 11
+    },
     {
       "date": "11/24/2026 PM",
       "course": "IDSN 515 Professional Practices Residential",
@@ -2212,135 +2247,59 @@ window.dashboardData = {
       "sectionsRemoved": [
         "34199"
       ]
+    },
+    {
+      "date": "November 25, 2026",
+      "snapshot": "11/25/2026, 4:51:56 PM PST",
+      "added": 6,
+      "dropped": 0,
+      "totals": {
+        "Undergraduate ACAD": 817,
+        "Graduate IDSN": 620,
+        "Product Innovation (PRIN)": 10
+      },
+      "fullSections": 9,
+      "notes": "USC spring refresh. Section additions/removals are recorded separately from seat changes.",
+      "sectionsAdded": [],
+      "sectionsRemoved": []
     }
   ],
   "netChangeLabel": "Latest refresh vs. previous snapshot",
   "latestChanges": [
     {
-      "date": "11/24/2026 PM",
-      "course": "IDSN 515 Professional Practices Residential",
-      "section": "34062",
-      "previous": 40,
-      "current": 39
-    },
-    {
-      "date": "11/24/2026 PM",
-      "course": "IDSN 522 Inclusive Design and Design Allyship",
-      "section": "34076",
-      "previous": 18,
-      "current": 19
-    },
-    {
-      "date": "11/24/2026 PM",
+      "date": "11/25/2026 PM",
       "course": "IDSN 542 Introduction to Machine Intelligence",
       "section": "34197",
-      "previous": 1,
-      "current": 2
+      "previous": 2,
+      "current": 3
     },
     {
-      "date": "11/24/2026 PM",
-      "course": "IDSN 543 Augmented Intelligence",
-      "section": "34198",
-      "previous": 22,
-      "current": 23
-    },
-    {
-      "date": "11/24/2026 PM",
-      "course": "IDSN 545 Integrative Project",
-      "section": "34188",
-      "previous": 26,
-      "current": 25
-    },
-    {
-      "date": "11/24/2026 PM",
-      "course": "IDSN 560 Narratives and Interactive Storytelling",
-      "section": "34142",
-      "previous": 36,
-      "current": 35
-    },
-    {
-      "date": "11/24/2026 PM",
-      "course": "IDSN 579 Social Media Incubator: Data-Driven Growth for Founders",
-      "section": "34151",
-      "previous": 34,
-      "current": 35
-    },
-    {
-      "date": "11/24/2026 PM",
-      "course": "IDSN 599 Special Topics",
-      "section": "34090",
-      "previous": 32,
-      "current": 31
-    },
-    {
-      "date": "11/24/2026 PM",
-      "course": "ACAD 176 Rapid Visualization",
-      "section": "10201",
-      "previous": 19,
-      "current": 20
-    },
-    {
-      "date": "11/24/2026 PM",
-      "course": "ACAD 181 Disruptive Innovation",
-      "section": "10209",
-      "previous": 35,
-      "current": 39
-    },
-    {
-      "date": "11/24/2026 PM",
-      "course": "ACAD 281 Constructing Experiences",
-      "section": "10247",
-      "previous": 33,
-      "current": 32
-    },
-    {
-      "date": "11/24/2026 PM",
-      "course": "ACAD 288 Constructing Digital Worlds",
-      "section": "10249",
-      "previous": 20,
-      "current": 21
-    },
-    {
-      "date": "11/24/2026 PM",
-      "course": "ACAD 307 Punk, Counterculture, and the Do-It-Yourself (DIY) Ethos",
-      "section": "10252",
-      "previous": 22,
-      "current": 23
-    },
-    {
-      "date": "11/24/2026 PM",
-      "course": "ACAD 324 The Practice of Design: Ideation to Innovation",
-      "section": "10257",
+      "date": "11/25/2026 PM",
+      "course": "IDSN 546 Integrative Studio",
+      "section": "34112",
       "previous": 14,
       "current": 15
     },
     {
-      "date": "11/24/2026 PM",
-      "course": "ACAD 360 Design Strategy: Problem Solving for Organizations",
-      "section": "10265",
-      "previous": 69,
-      "current": 70
+      "date": "11/25/2026 PM",
+      "course": "IDSN 599 Special Topics",
+      "section": "34090",
+      "previous": 31,
+      "current": 32
     },
     {
-      "date": "11/24/2026 PM",
-      "course": "ACAD 406 Purpose-Driven Innovation Incubator",
-      "section": "10259",
-      "previous": 12,
-      "current": 14
+      "date": "11/25/2026 PM",
+      "course": "ACAD 181 Disruptive Innovation",
+      "section": "10209",
+      "previous": 39,
+      "current": 41
     },
     {
-      "date": "11/24/2026 PM",
-      "course": "ACAD 432 Collaborative Prototyping in Health Innovation",
-      "section": "10279",
-      "previous": 17,
-      "current": 19
-    },
-    {
-      "date": "11/24/2026 PM",
-      "course": "ACAD 475B The Garage Experience",
-      "section": "10287",
-      "previous": 48,
-      "current": 49
+      "date": "11/25/2026 PM",
+      "course": "ACAD 222 Introduction to Machine Intelligence",
+      "section": "10230",
+      "previous": 10,
+      "current": 11
     }
   ]
 };
