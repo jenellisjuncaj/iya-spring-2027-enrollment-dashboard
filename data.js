@@ -1,7 +1,7 @@
 window.dashboardData = {
   "title": "USC Iovine and Young Academy — Spring 2027 Enrollment and Capacity Tracker",
   "termCode": 20271,
-  "currentSnapshot": "11/26/2026, 12:28:04 PM PST",
+  "currentSnapshot": "11/27/2026, 11:21:17 AM PST",
   "baselineSnapshot": "11/19/2026, 11:17:00 AM PST",
   "lowThreshold": 50,
   "nearThreshold": 80,
@@ -2295,6 +2295,21 @@ window.dashboardData = {
     {
       "date": "November 26, 2026",
       "snapshot": "11/26/2026, 12:28:04 PM PST",
+      "added": 0,
+      "dropped": 0,
+      "totals": {
+        "Undergraduate ACAD": 817,
+        "Graduate IDSN": 620,
+        "Product Innovation (PRIN)": 10
+      },
+      "fullSections": 9,
+      "notes": "USC spring refresh. Section additions/removals are recorded separately from seat changes.",
+      "sectionsAdded": [],
+      "sectionsRemoved": []
+    },
+    {
+      "date": "November 27, 2026",
+      "snapshot": "11/27/2026, 11:21:17 AM PST",
       "added": 0,
       "dropped": 0,
       "totals": {
